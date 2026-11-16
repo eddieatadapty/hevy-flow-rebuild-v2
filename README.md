@@ -6,11 +6,11 @@ Five ideas to turn more Hevy users into subscribers, each built into a clickable
 
 | # | Idea | Potential outcome |
 | :-- | :-- | :-- |
-| 01 | Make the paywall answer the questions they just answered | +10–20% CR to purchase |
-| 02 | Ask for the account after the paywall, not before the first question | +5–10% CR to purchase |
-| 03 | Hold the two permission prompts until after the paywall | +10–15% CR to purchase |
-| 04 | Bring your 4.9 stars and reviews up to the plans | +5–10% CR to purchase |
-| 05 | Offer a second plan when they tap Not now | +10–15% ARPU |
+| 01 | Name their goal on the paywall | +10–20% CR to purchase |
+| 02 | Ask for the account after the plan | +5–10% CR to purchase |
+| 03 | Hold both permission prompts until after the paywall | +10–15% CR to purchase |
+| 04 | Put your 4.9 stars by the plans | +5–10% CR to purchase |
+| 05 | Offer a second plan on Not now | +10–15% ARPU |
 
 Every price, rating and feature comes from Hevy's App Store listing, website or in-app screens. Impact ranges are Adapty’s expected effect from teardowns and A/B tests across 30,000+ subscription apps, not measured lift for Hevy. They overlap, so they don’t add up.
 

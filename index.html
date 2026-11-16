@@ -634,6 +634,7 @@ html.tourmode .au-tour{display:block;position:fixed;inset:0;z-index:6;pointer-ev
 .hv-ofc strong{font:700 20px var(--b-font);white-space:nowrap}.hv-ofc em{font:400 13px var(--b-font);font-style:normal;color:var(--b-ink2)}
 .hv-lnk{border:0;background:none;color:var(--b-primary);font:400 16px var(--b-font);cursor:pointer;padding:4px}
 .hv-today .hv-plans{margin-top:26px}
+.hv-calh>span{white-space:nowrap}  /* "5 par semaine" / "5 por semana" on one line */
 /* SCREENS:END */
 /* MOTION:START — the niconico-style layer (bterzic123.github.io/niconico-flow-rebuild): a dark hero in the app's
    own colour with drifting words and a floating phone fan, scroll reveals, count-up numbers, and a live walkthrough
@@ -691,7 +692,7 @@ html.jn body > .au-nav,html.jn #top,html.jn .au-mx-stats,html.jn #why,html.jn #i
 /* nav */
 .jn-navw{position:sticky;top:0;z-index:60;padding:12px 12px 0}
 .jn-nav{max-width:1200px;margin:0 auto;height:60px;display:flex;align-items:center;gap:14px;padding:0 10px 0 22px;border-radius:999px;
-  background:rgba(243,241,237,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--jn-hair)}
+  background:var(--jn-navbg,rgba(243,241,237,.88));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--jn-hair)}
 .jn-logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:16px;letter-spacing:-.01em;white-space:nowrap;color:var(--jn-ink)}
 .jn-logo img{height:var(--jn-logo-h,24px);width:auto;display:block}
 .jn-logo img.jn-ic{height:28px;border-radius:7px}
@@ -768,12 +769,11 @@ html.jn body > .au-nav,html.jn #top,html.jn .au-mx-stats,html.jn #why,html.jn #i
 .jn-vid video,.jn-vid > img{width:100%;height:100%;object-fit:cover;display:block}
 .jn-vid > img.jn-fit{object-fit:contain;background:#fff}
 .jn-tag{position:absolute;z-index:3;top:10px;left:10px;background:rgba(255,255,255,.94);color:var(--jn-ink);font-size:11px;font-weight:600;letter-spacing:.06em;padding:5px 10px;border-radius:999px;display:flex;gap:6px;align-items:center;text-transform:uppercase}
-.jn-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:#0866FF}
-.jn-tag.asa::before{background:#0a84ff}
-.jn-tag.img::before{background:#8a8a8e}
+.jn-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,#0866FF)}
 .jn-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
 .jn-strip img{width:100%;aspect-ratio:var(--ar,9/16);object-fit:cover;border-radius:8px;display:block;background:#ddd}
 .jn-adb .hook{font-size:24px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:var(--jn-ink)}
+.jn-adb .hook small{display:block;font-size:15px;font-weight:400;letter-spacing:0;color:var(--jn-mute);margin-top:4px}
 .jn-adb .en{margin-top:6px;font-size:14.5px;color:var(--jn-mute);line-height:1.45}
 .jn-adb .meta{margin-top:10px;font-size:13.5px;color:var(--jn-mute);line-height:1.45}
 .jn-adb dl{margin-top:8px;font-size:15px;line-height:1.5}
@@ -782,6 +782,16 @@ html.jn body > .au-nav,html.jn #top,html.jn .au-mx-stats,html.jn #why,html.jn #i
 .jn-adb .go{margin-top:20px}
 .jn-more{margin-top:16px;font-size:14px;line-height:1.55;color:var(--jn-mute);max-width:880px}
 .jn-foot-l{margin-top:8px;font-size:14px;line-height:1.55;color:var(--jn-mute);max-width:880px}
+/* every ad as its own card, stacked (Atlas): wide media for 16:9, a 300 px column for portrait ads and searches */
+.jn-adlist{display:flex;flex-direction:column;gap:12px;margin-top:44px}
+.jn-card{background:var(--jn-cream);border-radius:20px;padding:32px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:start}
+.jn-card.tall{grid-template-columns:300px 1fr;align-items:center}
+.jn-card .jn-media{max-width:none;margin:0;width:100%}
+.jn-card .jn-vid{aspect-ratio:var(--ar,16/9);max-height:none}
+.jn-card.tall .jn-vid{max-height:560px}
+.jn-card .jn-vid:has(> .jn-post){aspect-ratio:9/16}
+.jn-card .jn-strip img{aspect-ratio:var(--ar,16/9)}
+.jn-card .jn-adb .go{margin-top:20px}
 /* Apple Ads search ad, as the App Store shows it (animated) */
 .jn-vid.asa{--ar:3/4;background:#fff}
 .jn-asa{position:absolute;inset:0;background:#fff;color:#111;padding:44px 14px 14px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,sans-serif;display:flex;flex-direction:column;gap:12px}
@@ -819,7 +829,7 @@ html.jn body > .au-nav,html.jn #top,html.jn .au-mx-stats,html.jn #why,html.jn #i
 /* idea rows */
 .jn-list{margin-top:40px;display:flex;flex-direction:column;max-width:980px;border-top:1px solid var(--jn-hair)}
 .jn-row{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:26px 6px;border-bottom:1px solid var(--jn-hair);width:100%;text-align:left;transition:background .2s}
-.jn-row:hover{background:#faf9f7}
+.jn-row:hover{background:var(--jn-hover,#faf9f7)}
 .jn-row > span{font-size:22px;font-weight:600;color:var(--jn-mute);letter-spacing:-.02em;padding-top:2px;font-variant-numeric:tabular-nums}
 .jn-row h3{font-size:22px;font-weight:600;letter-spacing:-.02em;line-height:1.3;color:var(--jn-ink)}
 .jn-row p{font-size:15.5px;line-height:1.55;color:var(--jn-mute);margin-top:6px;max-width:780px}
@@ -833,7 +843,10 @@ html.jn body > .au-nav,html.jn #top,html.jn .au-mx-stats,html.jn #why,html.jn #i
 .jn-og{position:absolute;left:50%;top:32px;width:58%;max-width:300px;transform:translateX(-50%);display:grid;grid-template-columns:repeat(3,1fr);gap:3px;opacity:.95}
 .jn-og i{aspect-ratio:1;background:var(--c);display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font:600 12px/1.25 Inter,sans-serif;font-style:normal;color:#fff;overflow:hidden}
 .jn-osh::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(27,27,26,.98) 46%,rgba(27,27,26,.1) 80%)}
-.jn-osh > *:not(.jn-og){position:relative;z-index:2}
+.jn-osh > *:not(.jn-og):not(.jn-oimg){position:relative;z-index:2}
+.jn-osh.jn-world{background:var(--jn-world,var(--jn-dark))}
+.jn-osh.jn-world::after{background:linear-gradient(0deg,rgba(0,0,0,.94) 46%,rgba(0,0,0,.08) 82%)}
+.jn-oimg{position:absolute;left:50%;top:36px;width:64%;max-width:330px;transform:translateX(-50%);opacity:.92;filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
 .jn-osh .k{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .jn-osh h3{font-size:30px;font-weight:600;letter-spacing:-.03em;margin-top:8px;line-height:1.15;max-width:460px;color:#fff}
 .jn-nums{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
@@ -858,6 +871,7 @@ html.jn body > .au-nav,html.jn #top,html.jn .au-mx-stats,html.jn #why,html.jn #i
 .jn-ph .jn-h1p b{font-weight:600;color:var(--jn-mute)}
 .jn-tool{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:24px}
 .jn-seg{display:inline-flex;background:var(--jn-cream);border-radius:999px;padding:4px}
+.jn-langnote{font-size:13.5px;line-height:1.5;color:var(--jn-mute);margin-top:12px;max-width:780px}
 .jn-seg button{height:36px;padding:0 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--jn-ink2)}
 .jn-seg button.on{background:#fff;color:var(--jn-ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 html.jn #duo{max-width:1200px;width:auto;margin:0 auto;padding:0 40px}
@@ -870,21 +884,22 @@ html.jn .au-walk .au-walkbar i{display:block;height:3px;border-radius:3px;backgr
 html.jn .au-walk .au-walkbar i b{display:block;height:100%;background:var(--jn-lt);width:0;transition:width .5s}
 html.jn .au-walk:not(.on) .au-walkbar{display:none}
 html.jn .au-walk.on{position:sticky;top:84px}
-html.jn .au-duo-steps{justify-content:flex-start;margin-top:14px;gap:8px}
-html.jn .au-duo-steps button{height:44px;padding:0 18px;border:0;background:var(--jn-cream);color:var(--jn-ink2);font-size:15px;font-weight:500;border-radius:999px}
+html.jn .au-duo-steps{justify-content:flex-start;margin-top:14px;gap:6px}
+html.jn .au-duo-steps button{height:44px;padding:0 15px;border:0;background:var(--jn-cream);color:var(--jn-ink2);font-size:14.5px;font-weight:500;border-radius:999px;white-space:nowrap}
 html.jn .au-duo-steps button:hover{background:var(--jn-cream2)}
 html.jn .au-duo-steps button.au-today{background:#fff;box-shadow:inset 0 0 0 1.5px var(--jn-faint);border:0;color:var(--jn-mute)}
 html.jn .au-duo-steps button.on{background:var(--jn-ink);color:#fff;box-shadow:none}
 html.jn .au-duo-steps button.au-diff::after{background:var(--jn-acc2);border-color:#fff}
 html.jn .au-duo-sep{color:var(--jn-mute);letter-spacing:.12em;font-weight:500}
-html.jn .au-duo-stepcap{text-align:left;margin:14px 0 0;color:var(--jn-ink2);max-width:780px;font-size:15px}
+html.jn .au-duo-stepcap{text-align:left;margin:14px 0 0;color:var(--jn-mute);max-width:900px;font-size:15.5px;min-height:24px}
+html.jn .au-duo-stepcap b{color:var(--jn-ink);font-weight:600}
 html.jn .au-duo.au-n3{margin-top:30px;gap:28px;width:auto;margin-left:0;transform:none}
 html.jn .au-duo-ph{width:312px}
 html.jn .au-duo-fr{width:312px;height:675px;border-radius:46px;box-shadow:0 0 0 6px var(--au-ring),0 30px 60px rgba(27,27,26,.22)}
 html.jn .au-duo-fr iframe{transform:scale(.8)}
 html.jn .au-duo-pill{height:34px;background:var(--jn-cream);box-shadow:none;border-radius:999px;font-size:13.5px;font-weight:500;padding:0 14px 0 6px;max-width:332px;color:var(--jn-ink2);margin:0 auto 14px;width:fit-content}
-html.jn .au-duo-pill b{height:24px;padding:0 9px;display:inline-flex;align-items:center;background:#0866FF;font-size:11.5px;font-weight:500;border-radius:99px}
-html.jn .au-duo-pill.asa b{background:#1b1b1a}
+html.jn .au-duo-pill b{height:24px;padding:0 9px;display:inline-flex;align-items:center;background:var(--au-ring);font-size:11.5px;font-weight:500;border-radius:99px}
+html.jn .au-duo-steps .jn-n{font-variant-numeric:tabular-nums}
 html.jn .au-duo-cap{text-align:center;color:var(--jn-mute);min-height:84px;margin-top:16px;font-size:14px}
 html.jn .au-duo-cap .au-duo-k{color:var(--jn-ink);letter-spacing:.12em;font-size:12px;margin-bottom:4px}
 html.jn .au-duo-recs{margin-top:6px}
@@ -892,7 +907,7 @@ html.jn .au-rec{background:var(--jn-cream);border:0;border-radius:14px}
 html.jn .au-rec:hover,html.jn .au-rec.on{background:#fff;box-shadow:inset 0 0 0 1.5px var(--au-ring)}
 html.jn .au-rec>i{background:var(--au-ring)}
 html.jn .au-rec mark{background:var(--jn-soft);color:var(--jn-acc)}
-html.jn .au-rec-v{color:var(--jn-ink);letter-spacing:.1em}
+html.jn .au-rec-v{color:var(--au-ring);letter-spacing:.1em}
 html.jn .au-duo-tog button{border:0;background:var(--jn-cream)}
 html.jn .au-duo-tog button.on{background:var(--jn-ink)}
 .jn-icards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:64px}
@@ -904,7 +919,7 @@ html.jn .au-duo-tog button.on{background:var(--jn-ink)}
 .jn-icard h4{font-size:20px;font-weight:600;letter-spacing:-.02em;color:var(--jn-ink)}
 .jn-icard p{font-size:15px;line-height:1.55;color:var(--jn-mute)}
 .jn-icard .kept{font-size:13px;color:var(--jn-mute);border-top:1px solid var(--jn-hair);padding-top:10px;margin-top:6px}
-.jn-qr{position:relative;overflow:hidden;margin-top:40px;border-radius:20px;background:var(--jn-dark);color:#fff;padding:30px 32px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.jn-qr{position:relative;overflow:hidden;margin-top:40px;border-radius:20px;background:var(--jn-world,var(--jn-dark));color:#fff;padding:30px 32px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
 .jn-qg{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(4,1fr);gap:3px;padding:3px}
 .jn-qg i{background:var(--c);opacity:.85}
 .jn-qr::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(27,27,26,.95) 30%,rgba(27,27,26,.55))}
@@ -924,7 +939,8 @@ html.jn .au-duo-tog button.on{background:var(--jn-ink)}
   .jn-hin{grid-template-columns:1fr;padding-top:120px;padding-bottom:36px}
   .jn-hero{min-height:0}
   .jn-fan{height:330px;max-width:520px}
-  .jn-two,.jn-lib,.jn-outc{grid-template-columns:1fr}
+  .jn-two,.jn-lib,.jn-outc,.jn-card,.jn-card.tall{grid-template-columns:1fr}
+  .jn-card.tall .jn-media{max-width:300px}
   .jn-two{gap:36px}
   .jn-stats > .jn-wrap{grid-template-columns:repeat(2,1fr)}
   .jn-stat:nth-child(3){border-left:0}
@@ -947,7 +963,7 @@ html.jn .au-duo-tog button.on{background:var(--jn-ink)}
   .jn-fan{display:none}
   .jn-hin{padding:104px 22px 30px}
   .jn-sec{padding-top:72px}
-  .jn-lib{padding:18px;gap:24px}
+  .jn-lib,.jn-card{padding:18px;gap:24px}
   .jn-row{grid-template-columns:40px 1fr;gap:10px}
   .jn-icards{grid-template-columns:1fr}
   .jn-osh{min-height:400px;padding:26px 22px}
@@ -955,7 +971,7 @@ html.jn .au-duo-tog button.on{background:var(--jn-ink)}
 }
 @media (max-width:520px){.jn-logo span.jn-name,.jn-logo .jn-mask{display:none}.jn-logo img:not(.jn-ic){max-width:96px;height:auto;max-height:22px;object-fit:contain;object-position:left center}.jn-demo{padding:0 11px}.jn-stat b{font-size:30px}}
 @media (prefers-reduced-motion:reduce){.jn-fan img.jn-ic,.jn-post-m img{animation:none}.jn-slots i::before,.jn-slots i span{animation:none;opacity:.8}}
-html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--jn-soft:#dbefff}
+html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--jn-soft:#d6ecff;--jn-cream:#e9f5ff;--jn-cream2:#dbefff;--jn-hover:#f2f9ff;--jn-navbg:rgba(233,245,255,.88);--jn-world:radial-gradient(70% 90% at 82% 8%,rgba(0,139,252,.55),transparent 62%),radial-gradient(55% 70% at 8% 100%,rgba(10,10,10,.35),transparent 70%),linear-gradient(180deg,#0b0b0b,#0b0b0b)}html.jn .jn-qg{display:none}html.jn .jn-qr::before{background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.2))}
 /* JUNOCSS:END */
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" id="jnFont">
@@ -1058,25 +1074,25 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
         <h2 class="au-h2">Three promises in your videos. <span>One paywall for all of them.</span></h2>
       </div>
       <div>
-        <p>The Meta Ad Library shows <b>32 ads from your “Hevy” page, in 60 versions, from 3 Nov 2025 to 23 Mar 2026</b>; none is running on 16 November. The text mostly says “track it”; the videos carry three different promises: seeing progress, a log that remembers your weights, and “the gym’s Strava”. Every install then meets the same sign-up screen, the same 12 questions and <b>“Get Full Access to Hevy”</b>.</p><p>Flow Builder can open a different flow by the campaign an install came from, so the first screens repeat what the video showed, and each video is judged on the subscriptions it brings, not the installs. With no ads live, the same split works on the answer every install already gives you: build my own, or be guided.</p>
+        <p>The Meta Ad Library shows <b>32 ads from your “Hevy” page, in 60 versions, from 3 Nov 2025 to 23 Mar 2026</b>; none has run since 23 March. The text mostly says “track it”; the videos carry three different promises: seeing progress, a log that remembers your weights, and “the gym’s Strava”. Every install then meets the same sign-up, the same 12 questions and <b>“Get Full Access to Hevy”</b>.</p><p>Flow Builder can open a different flow by the campaign an install came from, so the first screens keep that video’s promise, and each video is judged on the subscriptions it brings, not the installs. With the ads paused, the same split works on an answer every install already gives: build my own, or be guided.</p>
       </div>
     </div>
-    <div class="au-duo-stats"><div><b>32</b><span>Hevy ads in the Meta Ad Library, Nov 2025 to Mar 2026, none live today</span></div><div><b>3</b><span>promises in their videos: progress, a log that remembers, the gym’s Strava</span></div><div><b>1</b><span>paywall every install reaches today, whichever video brought it</span></div></div>
-    <div class="au-pf"><div class="au-pf-h"><h3>Your ads, sorted by their text</h3><p>Share of the 60 ad versions on your “Hevy” page, Meta Ad Library, read 16 Nov 2026</p></div><div class="au-pf-bar"><i style="flex:31;background:var(--st-ink3)" title="Quand tu peux enfin tracker…"></i><i style="flex:13;background:var(--st-ink2)" title="loggen. tracken. durchziehen."></i><i style="flex:10;background:var(--st-hi)" title="Log it. Track it. Smash it."></i><i style="flex:6;background:var(--st-accent)" title="Stop guessing your workouts."></i></div><div class="au-pf-leg"><span><i style="background:var(--st-ink3)"></i>Quand tu peux enfin tracker… · 31</span><span><i style="background:var(--st-ink2)"></i>loggen. tracken. durchziehen. · 13</span><span><i style="background:var(--st-hi)"></i>Log it. Track it. Smash it. · 10</span><span><i style="background:var(--st-accent)"></i>Stop guessing your workouts. · 6</span></div><div class="au-pf-grid"><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/g-fr.jpg" alt="A frame from the ad"><span class="au-pf-tag">Most versions · Feb–Mar 2026</span><span class="au-pf-n">31 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Quand tu peux enfin tracker tes entrainements à la salle 💪”</div><div class="au-pf-meta">12 ads, 18 Feb – 23 Mar 2026 · French · App Store</div><dl><dt>In the ad</dt><dd>Gym clips with on-video lines like “Tu veux ça ? Fais ça !” over your Workout Days Log, and “Dans ta vingtaine quelqu’un va essayer de te convaincre d’installer Hevy pour tracker tes charges et progresser…”.</dd><dt>The promise</dt><dd>Finally tracking my lifts, and seeing the days add up.</dd><dt>Today it lands on</dt><dd>Sign up with Apple, Google or Email, 12 questions, “Get Full Access to Hevy”.</dd></dl><div class="au-pf-go"><span>No phone of its own: it would open Version C (its videos show your Workout Days Log).</span></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-b-poster.jpg" alt="A frame from the ad"><span class="au-pf-tag">Feb–Mar 2026</span><span class="au-pf-n">13 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“loggen. tracken. durchziehen. ✅”</div><div class="au-pf-meta">8 ads, 23 Feb – 12 Mar 2026 · German · Google Play and App Store</div><dl><dt>In the ad</dt><dd>The same videos as “Log it. Track it. Smash it.”, including With Hevy / Without Hevy.</dd><dt>The promise</dt><dd>Log it, track it, push through.</dd><dt>Today it lands on</dt><dd>The same sign-up screen, questions and paywall as every other ad.</dd></dl><div class="au-pf-go"><span>No phone of its own: it would open Version B.</span></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-b-1.jpg" alt="A frame from the ad"><span class="au-pf-tag">Feb–Mar 2026</span><span class="au-pf-n">10 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Log it. Track it. Smash it. ✅”</div><div class="au-pf-meta">6 ads, 23 Feb – 13 Mar 2026 · English · App Store and Google Play</div><dl><dt>In the ad</dt><dd>With Hevy / Without Hevy, split screen: with Hevy he sits down and lifts; without, he gets up, checks the machine and guesses the weight.</dd><dt>The promise</dt><dd>Never forget a weight again.</dd><dt>Today it lands on</dt><dd>The same sign-up screen, questions and paywall as every other ad.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="b">Open its flow ›</button></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-a-1.jpg" alt="A frame from the ad"><span class="au-pf-tag">Nov 2025 · US App Store</span><span class="au-pf-n">6 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Stop guessing your workouts. Start tracking with Hevy 💪”</div><div class="au-pf-meta">6 ads, 3 – 20 Nov 2025 · English · App Store, headline “Log it. Track it. Smash it.”</div><dl><dt>In the ad</dt><dd>Six videos under one text; two get a phone: “When you find the perfect gym app and start seeing progress” (Version A) and “POV: you just found out that the gym’s Strava exists” (Version C).</dd><dt>The promise</dt><dd>Progress I can see, and a gym app my friends are on.</dd><dt>Today it lands on</dt><dd>The same sign-up screen, questions and paywall as every other ad.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="a">Open its flow ›</button></div></div></article></div><p class="au-pf-note">We read every ad on the page, active or not, and grouped them by their first line; counts are ad versions, not spend. The English lines carry the three videos that get a phone of their own below. The French and German ads reuse the same kinds of videos, so they would open the same versions.</p></div>
-    <div class="au-duo-h"><h3>Three videos, three versions</h3><p>Left to right: someone who saw your “start seeing progress” video, your “With Hevy / Without Hevy” video and your “gym’s Strava” video. Tap <b>Today’s paywall</b> to see where all three land now, then tap through the proposal, or jump straight to an idea.</p></div>
+    <div class="au-duo-stats"><div><b>32</b><span>Hevy ads in the Meta Ad Library, Nov 2025 to Mar 2026; paused since 23 Mar</span></div><div><b>3</b><span>promises in their videos: progress, a log that remembers, the gym’s Strava</span></div><div><b>1</b><span>paywall every install reaches today, whichever video brought it</span></div></div>
+    <div class="au-pf"><div class="au-pf-h"><h3>Your ads, sorted by their text</h3><p>Share of the 60 ad versions on your “Hevy” page, Meta Ad Library, read 16 Nov 2026</p></div><div class="au-pf-bar"><i style="flex:31;background:var(--st-ink3)" title="Quand tu peux enfin tracker…"></i><i style="flex:13;background:var(--st-ink2)" title="loggen. tracken. durchziehen."></i><i style="flex:10;background:var(--st-hi)" title="Log it. Track it. Smash it."></i><i style="flex:6;background:var(--st-accent)" title="Stop guessing your workouts."></i></div><div class="au-pf-leg"><span><i style="background:var(--st-ink3)"></i>Quand tu peux enfin tracker… · 31</span><span><i style="background:var(--st-ink2)"></i>loggen. tracken. durchziehen. · 13</span><span><i style="background:var(--st-hi)"></i>Log it. Track it. Smash it. · 10</span><span><i style="background:var(--st-accent)"></i>Stop guessing your workouts. · 6</span></div><div class="au-pf-grid"><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/g-fr.jpg" alt="A frame from the ad"><span class="au-pf-tag">Most versions · Feb–Mar 2026</span><span class="au-pf-n">31 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Quand tu peux enfin tracker tes entrainements à la salle 💪”</div><div class="au-pf-meta">12 ads, 18 Feb – 23 Mar 2026 · French · App Store</div><dl><dt>In the ad</dt><dd>Gym clips with on-video lines like “Tu veux ça ? Fais ça !” over your Workout Days Log, and “Dans ta vingtaine quelqu’un va essayer de te convaincre d’installer Hevy pour tracker tes charges et progresser…”.</dd><dt>The promise</dt><dd>Finally tracking my lifts, and seeing the days add up.</dd><dt>Today it lands on</dt><dd>Sign up with Apple, Google or Email, 12 questions, “Get Full Access to Hevy”.</dd></dl><div class="au-pf-go"><span>No phone of its own: it would open the “gym’s Strava” flow (its videos show your Workout Days Log).</span></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-b-poster.jpg" alt="A frame from the ad"><span class="au-pf-tag">Feb–Mar 2026</span><span class="au-pf-n">13 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“loggen. tracken. durchziehen. ✅”</div><div class="au-pf-meta">8 ads, 23 Feb – 12 Mar 2026 · German · Google Play and App Store</div><dl><dt>In the ad</dt><dd>The same videos as “Log it. Track it. Smash it.”, including With Hevy / Without Hevy.</dd><dt>The promise</dt><dd>Log it, track it, push through.</dd><dt>Today it lands on</dt><dd>The same sign-up screen, questions and paywall as every other ad.</dd></dl><div class="au-pf-go"><span>No phone of its own: it would open the “Log it. Track it. Smash it.” flow.</span></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-b-1.jpg" alt="A frame from the ad"><span class="au-pf-tag">Feb–Mar 2026</span><span class="au-pf-n">10 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Log it. Track it. Smash it. ✅”</div><div class="au-pf-meta">6 ads, 23 Feb – 13 Mar 2026 · English · App Store and Google Play</div><dl><dt>In the ad</dt><dd>With Hevy / Without Hevy, split screen: with Hevy he sits down and lifts; without, he gets up, checks the machine and guesses the weight.</dd><dt>The promise</dt><dd>Never forget a weight again.</dd><dt>Today it lands on</dt><dd>The same sign-up screen, questions and paywall as every other ad.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="b">Open its flow ›</button></div></div></article><article class="au-pf-c"><div class="au-pf-cov"><img src="assets/ads/ad-a-1.jpg" alt="A frame from the ad"><span class="au-pf-tag">Nov 2025 · US App Store</span><span class="au-pf-n">6 versions</span></div><div class="au-pf-bd"><div class="au-pf-hook">“Stop guessing your workouts. Start tracking with Hevy 💪”</div><div class="au-pf-meta">6 ads, 3 – 20 Nov 2025 · English · App Store, headline “Log it. Track it. Smash it.”</div><dl><dt>In the ad</dt><dd>Six videos under one text; two get a phone: “When you find the perfect gym app and start seeing progress” and “POV: you just found out that the gym’s Strava exists”.</dd><dt>The promise</dt><dd>Progress I can see, and a gym app my friends are on.</dd><dt>Today it lands on</dt><dd>The same sign-up screen, questions and paywall as every other ad.</dd></dl><div class="au-pf-go"><button type="button" data-duogo="a">Open its flow ›</button></div></div></article></div><p class="au-pf-note">We read every ad on the page, active or not, and grouped them by their first line; counts are ad versions, not spend. The English lines carry the three videos that get a phone of their own below. The French and German ads reuse the same kinds of videos, so they would open the same flows.</p></div>
+    <div class="au-duo-h"><h3>Three videos, three first launches</h3><p>Left to right: someone who saw your “start seeing progress” video, your “Log it. Track it. Smash it.” video and your “gym’s Strava” video. Tap <b>Today</b> to see where all three land now, then tap through, or jump straight to an idea.</p></div>
     <div class="au-duo-steps" id="duoSteps" aria-label="Steps, in every phone"></div>
     <div class="au-duo-ideas" id="duoIdeas" aria-label="The five ideas, in every phone"></div>
     <p class="au-duo-stepcap" id="duoStepCap"></p>
-    <div class="au-duo-tog" role="group" aria-label="Which ad"><button type="button" data-duoone="a" class=on>Ad 1 · Seeing progress</button><button type="button" data-duoone="b">Ad 2 · With / without Hevy</button><button type="button" data-duoone="c">Ad 3 · The gym’s Strava</button></div>
+    <div class="au-duo-tog" role="group" aria-label="Which ad"><button type="button" data-duoone="a" class=on>A · “Start seeing progress”</button><button type="button" data-duoone="b">B · “Log it. Track it.”</button><button type="button" data-duoone="c">C · “The gym’s Strava”</button></div>
     <div class="au-duo au-n3" id="duoStage" data-one="a">
-      <div class="au-duo-ph au-duo-a"><p class="au-duo-pill"><b>Meta video ad</b><span>When you find the perfect gym app and start seeing progress</span></p><div class="au-duo-fr" id="duoFra"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapa"></p><div class="au-duo-recs" id="duoReca" aria-label="Recommendations for this ad"></div></div><div class="au-duo-ph au-duo-b"><p class="au-duo-pill"><b>Meta video ad</b><span>Log it. Track it. Smash it. ✅ · With Hevy / Without Hevy</span></p><div class="au-duo-fr" id="duoFrb"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapb"></p><div class="au-duo-recs" id="duoRecb" aria-label="Recommendations for this ad"></div></div><div class="au-duo-ph au-duo-c"><p class="au-duo-pill"><b>Meta video ad</b><span>POV: you just found out that the gym’s Strava exists</span></p><div class="au-duo-fr" id="duoFrc"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapc"></p><div class="au-duo-recs" id="duoRecc" aria-label="Recommendations for this ad"></div></div>
+      <div class="au-duo-ph au-duo-a"><p class="au-duo-pill"><b>Meta video ad</b><span>Follow a program</span></p><div class="au-duo-fr" id="duoFra"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapa"></p><div class="au-duo-recs" id="duoReca" aria-label="Recommendations for this ad"></div></div><div class="au-duo-ph au-duo-b"><p class="au-duo-pill"><b>Meta video ad</b><span>Log every set</span></p><div class="au-duo-fr" id="duoFrb"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapb"></p><div class="au-duo-recs" id="duoRecb" aria-label="Recommendations for this ad"></div></div><div class="au-duo-ph au-duo-c"><p class="au-duo-pill"><b>Meta video ad</b><span>Train with friends</span></p><div class="au-duo-fr" id="duoFrc"><div class="au-duo-ld">Loading the flow…</div></div><p class="au-duo-cap" id="duoCapc"></p><div class="au-duo-recs" id="duoRecc" aria-label="Recommendations for this ad"></div></div>
     </div>
     <p class="au-duo-hint">Tap through any phone and the others follow. A dot marks the screens that differ by ad.</p>
     <table class="au-duo-tbl" id="duoTbl"></table>
-    <div class="au-duo-next"><div><b>Day 1</b><h4>Pass the campaign into Adapty</h4><p>Send the Meta campaign (or the install source) with each install, so the app knows which video brought it. Organic installs split on “build my own or be guided”.</p></div><div><b>Week 1</b><h4>One flow per promise</h4><p>Ship the three versions in Flow Builder, with no app release, each against today’s flow.</p></div><div><b>Week 2</b><h4>Judge each version on what its installs earn</h4><p>Compare purchases per version, not installs per ad.</p></div></div>
-    <p class="au-adn">Your Meta ads are paused today; these versions are ready for any campaign you restart. No Apple Ads searches were found for Hevy in the US in the last 30 days. No range for the ad layer itself: only a test per ad gives one.</p>
+    <div class="au-duo-next"><div><b>Day 1</b><h4>Pass the campaign into Adapty</h4><p>After a one-time SDK setup, the Meta campaign each install came from arrives as a user attribute and picks the flow at first open. Organic installs split on “build my own or be guided”.</p></div><div><b>Week 1</b><h4>One flow per promise</h4><p>Progress, logging and community each get their own first screens in Flow Builder, with no app release, each against today’s flow.</p></div><div><b>Week 2</b><h4>Judge each video on what it earns</h4><p>Each flow against today’s, measured on trials, purchases and what each install from that video earns.</p></div></div>
+    <p class="au-adn">Your Meta ads are paused: the last one ended on 23 March 2026. These flows are ready for the campaigns you restart, and until then the same split works on “build my own or be guided”. No Apple Ads searches were found for Hevy in the US in the last 30 days. This layer carries no range: only a test per video can give one.</p>
   </div>
-  <script type="application/json" id="duoData">{"flows": [{"k": "a", "ad": "a", "label": "Ad 1 · Seeing progress", "chan": "Meta video ad", "pill": "When you find the perfect gym app and start seeing progress", "version": "Version A · Program first", "recs": [{"step": "welcome", "title": "Your progress slide, first", "why": "<b>Try</b> opening on your own “Turn your training into visible progress.” slide, <b>because</b> this video promised progress and today it opens on “Log your workouts” and a sign-up wall.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "ask", "title": "Skip the question the ad answered", "why": "<b>Try</b> “What is your top goal?” and leave out “build your own or be guided?”, <b>because</b> “Stop guessing your workouts” already told you they want to be guided.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "paywall", "title": "A result-led paywall", "why": "<b>Try</b> “Start your Gain Strength program” over their program summary, <b>because</b> they just watched it being built and “Get Full Access to Hevy” doesn’t mention it.", "impact": "+10–20%", "il": "CR to purchase"}]}, {"k": "b", "ad": "b", "label": "Ad 2 · With / without Hevy", "chan": "Meta video ad", "pill": "Log it. Track it. Smash it. ✅ · With Hevy / Without Hevy", "version": "Version B · Log first", "recs": [{"step": "welcome", "title": "The ad’s line on your logger slide", "why": "<b>Try</b> “Log it. Track it. Smash it.” over your Log Workout slide, <b>because</b> the video showed exactly that: the logger remembering the weight.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "value", "title": "Set 1, logged before the price", "why": "<b>Try</b> one tap that logs set 1 of the lift for the muscle they picked, Previous filled next time, <b>because</b> the video’s point is never guessing a weight.", "impact": "+10–20%", "il": "CR to purchase"}, {"step": "paywall", "title": "Your Free vs Pro table, moved up", "why": "<b>Try</b> your own table (4 max, 3 months, 7 max) above the plans and $2.00 a month on Yearly, <b>because</b> loggers buy limits, and today the table is four screens down.", "impact": "+5–10%", "il": "CR to purchase"}]}, {"k": "c", "ad": "c", "label": "Ad 3 · The gym’s Strava", "chan": "Meta video ad", "pill": "POV: you just found out that the gym’s Strava exists", "version": "Version C · Community first", "recs": [{"step": "welcome", "title": "Your community slide, first", "why": "<b>Try</b> your own “Connect with athletes who share your goals.” slide first, <b>because</b> the video sold “the gym’s Strava” and today that slide comes third.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "value", "title": "Their first workout card", "why": "<b>Try</b> the card from the ad (1h 5min, 8,440 kg, 2 records) with their Workout Days Log, <b>because</b> that card is the thing the video showed.", "impact": "+5–15%", "il": "CR to purchase"}, {"step": "paywall", "title": "A proof-led paywall", "why": "<b>Try</b> 4.9 from 104K ratings, “Apps We Love” and your “Love the community on here too” review above the plans, <b>because</b> community people decide on what others say.", "impact": "+5–10%", "il": "CR to purchase"}]}], "rows": [{"id": "ad", "h": "Your ad", "a": "“When you find the perfect gym app and start seeing progress”, under “Stop guessing your workouts.”", "b": "“With Hevy / Without Hevy”, under “Log it. Track it. Smash it. ✅”", "c": "“POV: you just found out that the gym’s Strava exists”, under “Stop guessing your workouts.”"}, {"id": "welcome", "h": "Welcome", "a": "Your slide “Turn your training into visible progress.”", "b": "“Log it. Track it. Smash it.” over your logger slide.", "c": "Your slide “Connect with athletes who share your goals.”"}, {"id": "ask", "h": "First question", "a": "“What is your top goal?” (build or be guided is skipped).", "b": "“Which muscle group do you want to focus on?”", "c": "“How often do you want to work out?”"}, {"id": "value", "h": "First result", "a": "Your loader and “Your Personalized Program”, on their goal.", "b": "Set 1 of their lift logged in your logger.", "c": "Their workout card and Workout Days Log."}, {"id": "paywall", "h": "Paywall", "a": "Result-led: “Start your Gain Strength program”, their program on top.", "b": "Comparison-led: your Free vs Pro table up top, $2.00 a month.", "c": "Proof-led: 4.9 from 104K ratings, Apps We Love, a review."}, {"id": "offer", "h": "Not now", "a": "Monthly, $2.99.", "b": "Lifetime, $74.99.", "c": "Monthly, $2.99."}], "tableTitle": "The same app, answering three different videos.", "tableSub": "The five ideas sit underneath all three. Only these screens change with the video they saw; each row opens that screen in every phone.", "steps": [{"id": "ad", "label": "The ad"}, {"id": "today", "label": "Today’s paywall"}, {"sep": "Proposed"}, {"id": "welcome", "label": "Welcome", "ids": {"a": "welcome-a", "b": "welcome-b", "c": "welcome-c"}}, {"id": "units", "label": "Units"}, {"id": "ask", "label": "Question", "ids": {"a": "ask-a", "b": "ask-b", "c": "ask-c"}}, {"id": "value", "label": "First result", "ids": {"a": "value-a", "b": "value-b", "c": "value-c"}}, {"id": "paywall", "label": "Paywall", "ids": {"a": "paywall-a", "b": "paywall-b", "c": "paywall-c"}}, {"id": "offer", "label": "Not now"}], "stepCaps": {"today": "<b>Today</b>, all three videos land on Sign up with Apple, Google or Email, a username, 12 questions and this paywall: “Get Full Access to Hevy”, Hevy Trainer first, reviews four screens down. US prices; your recording was on the Vietnamese storefront.", "units": "Your “Select Units”, word for word, in every version; the notification and Apple Health prompts move past the paywall (idea 3).", "offer": "Monthly at $2.99 in Versions A and C, Lifetime at $74.99 in Version B, instead of “Are you sure?” (idea 5)."}}</script>
+  <script type="application/json" id="duoData">{"flows": [{"k": "a", "ad": "a", "label": "A · “Start seeing progress”", "chan": "Meta video ad", "pill": "Follow a program", "version": "From your “start seeing progress” ad", "recs": [{"step": "welcome", "title": "Open on your progress slide", "why": "Your own “Turn your training into visible progress.” comes first, with one “Get started”. The video promised progress; today it opens on a sign-up.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "ask", "title": "Ask the goal, skip build-or-guided", "why": "“What is your top goal?” and nothing else first. “Stop guessing your workouts” already told you they want to be guided.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "paywall", "title": "Start their program on the paywall", "why": "“Start your Gain Strength program” over the program they just watched being built. Today’s “Get Full Access to Hevy” never mentions it.", "impact": "+10–20%", "il": "CR to purchase"}]}, {"k": "b", "ad": "b", "label": "B · “Log it. Track it.”", "chan": "Meta video ad", "pill": "Log every set", "version": "From your “Log it. Track it. Smash it.” ad", "recs": [{"step": "welcome", "title": "The ad’s line on your logger slide", "why": "“Log it. Track it. Smash it.” over your Log Workout slide. The video showed exactly that: the log remembering the weight.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "value", "title": "Log set 1 before any price", "why": "One tap logs set 1 of the lift for the muscle they picked, and Previous is filled next time. Never guessing a weight is the whole video.", "impact": "+10–20%", "il": "CR to purchase"}, {"step": "paywall", "title": "Open on your Free vs Pro table", "why": "Your own limits (4 routines, 3 months of graphs, 7 custom exercises) above the plans, and $2.00 a month on Yearly. People who log buy limits.", "impact": "+5–10%", "il": "CR to purchase"}]}, {"k": "c", "ad": "c", "label": "C · “The gym’s Strava”", "chan": "Meta video ad", "pill": "Train with friends", "version": "From your “gym’s Strava” ad", "recs": [{"step": "welcome", "title": "Open on your community slide", "why": "Your own “Connect with athletes who share your goals.” comes first. The video sold “the gym’s Strava”, and today that slide is third, behind the sign-up.", "impact": "+3–8%", "il": "CR to purchase"}, {"step": "value", "title": "Show their first workout card", "why": "The card from the ad, 1h 5min, 8,440 kg and 2 records, with their Workout Days Log. It is the thing the video showed off.", "impact": "+5–15%", "il": "CR to purchase"}, {"step": "paywall", "title": "Lead the paywall with your proof", "why": "4.9 from 104K ratings, “Apps We Love” and natzgrierson’s “Love the community on here too” above the plans. People who came for a community decide on what others say.", "impact": "+5–10%", "il": "CR to purchase"}]}], "rows": [{"id": "ad", "h": "Where they came from", "a": "“When you find the perfect gym app and start seeing progress”, under “Stop guessing your workouts.” Tap Install now.", "b": "“With Hevy / Without Hevy”, under “Log it. Track it. Smash it. ✅” Tap Install now.", "c": "“POV: you just found out that the gym’s Strava exists”, under “Stop guessing your workouts.” Tap Install now."}, {"id": "welcome", "h": "Arrive", "a": "Your slide “Turn your training into visible progress.”, one “Get started”. No sign-up yet.", "b": "“Log it. Track it. Smash it.” over your logger slide.", "c": "Your slide “Connect with athletes who share your goals.”"}, {"id": "ask", "h": "One question", "a": "“What is your top goal?” Build-or-guided is left out.", "b": "“Which muscle group do you want to focus on?”", "c": "“How often do you want to work out?”"}, {"id": "value", "h": "First win", "a": "Your loader, then “Your Personalized Program” on their goal.", "b": "Set 1 of their lift logged in your logger.", "c": "Their workout card and Workout Days Log."}, {"id": "paywall", "h": "Paywall", "a": "“Start your Gain Strength program”, their program on top.", "b": "Your Free vs Pro table on top, $2.00 a month on Yearly.", "c": "4.9 from 104K ratings, Apps We Love and a review on top."}, {"id": "offer", "h": "Not now", "a": "Monthly, $2.99.", "b": "Lifetime, $74.99.", "c": "Monthly, $2.99."}], "tableTitle": "The same app, answering three different videos.", "tableSub": "The five ideas sit underneath all three. These screens change with the video they saw; each row opens that step in every phone.", "steps": [{"id": "today", "label": "Today"}, {"id": "ad", "label": "The ad"}, {"id": "welcome", "label": "Arrive", "ids": {"a": "welcome-a", "b": "welcome-b", "c": "welcome-c"}}, {"id": "units", "label": "Units"}, {"id": "ask", "label": "One question", "ids": {"a": "ask-a", "b": "ask-b", "c": "ask-c"}}, {"id": "value", "label": "First win", "ids": {"a": "value-a", "b": "value-b", "c": "value-c"}}, {"id": "paywall", "label": "Paywall", "ids": {"a": "paywall-a", "b": "paywall-b", "c": "paywall-c"}}, {"id": "offer", "label": "Not now"}], "stepCaps": {"today": "<b>Today:</b> every install, whichever video it came from, opens on “Log your workouts easily, all in one place.”, Sign up with Apple, Google or Email, a username, 12 questions and “Get Full Access to Hevy”, Hevy Trainer first. US prices; your recording was on the Vietnamese storefront.", "units": "Your “Select Units”, word for word, in every flow. The notification and Apple Health prompts move past the paywall.", "offer": "“Not now” offers a plan you already sell: Monthly at $2.99 after the progress and Strava videos, Lifetime at $74.99 after “Log it. Track it. Smash it.”."}, "stepLine": {"today": "<b>Today:</b> every install, whichever video it came from, opens on “Log your workouts easily, all in one place.”, Sign up with Apple, Google or Email, a username, 12 questions and “Get Full Access to Hevy”, Hevy Trainer first. US prices; your recording was on the Vietnamese storefront.", "ad": "<b>Step 1.</b> Your three Meta videos as the feed showed them: “start seeing progress”, “Log it. Track it. Smash it.”, “the gym’s Strava”. Tap Install now.", "welcome": "<b>Step 2. Proposed:</b> the first screen is the carousel slide the video promised, with one “Get started”. No sign-up yet.", "units": "<b>Step 3. Proposed:</b> your “Select Units”, kept. The notification and Apple Health prompts wait until after the paywall.", "ask": "<b>Step 4. Proposed:</b> one question, a different one per video: the goal, the muscle focus, workouts a week.", "value": "<b>Step 5. Proposed:</b> a first win before any price: their program, set 1 logged, their workout card.", "paywall": "<b>Step 6. Proposed:</b> your paywall and your prices. The headline names what they told you; the layout follows the video.", "offer": "<b>Step 7. Proposed:</b> Not now offers a second plan you already sell, instead of “Are you sure?”."}}</script>
 </section>
 
 <section class="au-sec au-white" id="prototype">
@@ -1086,7 +1102,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
       <h2 class="au-h2">Every idea, inside your own onboarding.</h2>
       <p>Tap through it like a new user, or jump straight to an idea. Green numbers mark the screens that carry one.</p>
     </div>
-    <div class="au-langrow"><span>The ad they saw</span><div class="au-lsw" role="group" aria-label="The ad they saw"><button type="button" data-pick="ad:a">Ad 1 · Seeing progress</button><button type="button" data-pick="ad:b">Ad 2 · With / without Hevy</button><button type="button" data-pick="ad:c">Ad 3 · The gym’s Strava</button></div></div>
+    <div class="au-langrow"><span>The ad they saw</span><div class="au-lsw" role="group" aria-label="The ad they saw"><button type="button" data-pick="ad:a">“Start seeing progress”</button><button type="button" data-pick="ad:b">“Log it. Track it.”</button><button type="button" data-pick="ad:c">“The gym’s Strava”</button></div></div>
     <div class="au-langrow" id="langRow" hidden><span>Prototype language</span><div class="au-lsw" id="langSw" role="group" aria-label="Prototype language"></div></div>
     <div class="au-seg" id="chips" role="tablist" aria-label="Screens"></div>
     <div class="au-stage">
@@ -1094,236 +1110,236 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
         <div class="island"></div>
         <div class="sbar"><span>9:41</span><span>●●● ▮</span></div>
 
-<!-- SCREENS:START — Hevy: three versions, one per Meta video (S.ad = a | b | c). data-ad keeps a screen in that ad's flow only.
+<!-- SCREENS:START — Hevy (data-t keys for ES / FR, parts/i18n.json): three versions, one per Meta video (S.ad = a | b | c). data-ad keeps a screen in that ad's flow only.
      Kept from the onboarding recorded on 16 Nov 2026: the welcome carousel art and lines, "Already have account? Log in",
      "Select Units", the quiz questions and options word for word, "We're preparing your personalized program",
      "Your Personalized Program", the paywall header, plan cards, "Subscribe to Yearly plan", "Not now" and the fine print. -->
 
 <section class="scr hv-adscr" data-id="ad">
   <div class="hv-fb">
-    <div class="hv-fbh"><img src="assets/brand/appstore-icon.jpg" alt=""><div><b>Hevy</b><small>Sponsored · ◍</small></div><span>···</span></div>
+    <div class="hv-fbh"><img src="assets/brand/appstore-icon.jpg" alt=""><div><b>Hevy</b><small data-t="fb_spon">Sponsored · ◍</small></div><span>···</span></div>
     <p class="hv-fbt"><span data-show="ad:a">Stop guessing your workouts. Start tracking with Hevy 💪</span><span data-show="ad:b">Log it. Track it. Smash it. ✅</span><span data-show="ad:c">Stop guessing your workouts. Start tracking with Hevy 💪</span></p>
     <div class="hv-fbm"><video data-show="ad:a" src="assets/ads/ad-a.mp4" poster="assets/ads/ad-a-poster.jpg" autoplay muted loop playsinline></video><video data-show="ad:b" src="assets/ads/ad-b.mp4" poster="assets/ads/ad-b-poster.jpg" autoplay muted loop playsinline></video><video data-show="ad:c" src="assets/ads/ad-c.mp4" poster="assets/ads/ad-c-poster.jpg" autoplay muted loop playsinline></video></div>
-    <div class="hv-fbl"><div><small>itunes.apple.com</small><b><span data-show="ad:a">Log it. Track it. Smash it.</span><span data-show="ad:b">Hevy - Workout Tracker Gym Log App - App Store</span><span data-show="ad:c">Log it. Track it. Smash it.</span></b></div><button class="hv-fbb" data-go="next">Install now</button></div>
-    <div class="hv-fbr"><span>👍 Like</span><span>💬 Comment</span><span>↗ Share</span></div>
+    <div class="hv-fbl"><div><small>itunes.apple.com</small><b><span data-show="ad:a">Log it. Track it. Smash it.</span><span data-show="ad:b">Hevy - Workout Tracker Gym Log App - App Store</span><span data-show="ad:c">Log it. Track it. Smash it.</span></b></div><button class="hv-fbb" data-go="next" data-t="fb_inst">Install now</button></div>
+    <div class="hv-fbr"><span data-t="fb_like">👍 Like</span><span data-t="fb_com">💬 Comment</span><span data-t="fb_share">↗ Share</span></div>
   </div>
 </section>
 
 <section class="scr" data-id="welcome-a" data-ad="a">
   <div class="hv-art"><img src="assets/crop/welcome-progress.jpg" alt=""></div>
   <div class="hv-wb">
-    <h1 class="hv-wh" data-hl="a1">Turn your training into visible progress.</h1>
+    <h1 class="hv-wh" data-hl="a1" data-t="wel_a">Turn your training into visible progress.</h1>
     <div class="hv-dots"><i class="on"></i><i></i><i></i></div>
-    <button class="hv-go" data-go="next" data-hl="2">Get started</button>
-    <p class="hv-li">Already have account? <b>Log in</b></p>
+    <button class="hv-go" data-go="next" data-hl="2" data-t="wel_cta">Get started</button>
+    <p class="hv-li" data-t="have">Already have account? <b>Log in</b></p>
   </div>
 </section>
 
 <section class="scr" data-id="welcome-b" data-ad="b">
   <div class="hv-art"><img src="assets/crop/welcome-log.jpg" alt=""></div>
   <div class="hv-wb">
-    <h1 class="hv-wh" data-hl="b1">Log it. Track it. Smash it.</h1>
+    <h1 class="hv-wh" data-hl="b1" data-t="wel_b">Log it. Track it. Smash it.</h1>
     <div class="hv-dots"><i class="on"></i><i></i><i></i></div>
-    <button class="hv-go" data-go="next" data-hl="2">Get started</button>
-    <p class="hv-li">Already have account? <b>Log in</b></p>
+    <button class="hv-go" data-go="next" data-hl="2" data-t="wel_cta">Get started</button>
+    <p class="hv-li" data-t="have">Already have account? <b>Log in</b></p>
   </div>
 </section>
 
 <section class="scr" data-id="welcome-c" data-ad="c">
   <div class="hv-art"><img src="assets/crop/welcome-community.jpg" alt=""></div>
   <div class="hv-wb">
-    <h1 class="hv-wh" data-hl="c1">Connect with athletes who share your goals.</h1>
+    <h1 class="hv-wh" data-hl="c1" data-t="wel_c">Connect with athletes who share your goals.</h1>
     <div class="hv-dots"><i class="on"></i><i></i><i></i></div>
-    <button class="hv-go" data-go="next" data-hl="2">Get started</button>
-    <p class="hv-li">Already have account? <b>Log in</b></p>
+    <button class="hv-go" data-go="next" data-hl="2" data-t="wel_cta">Get started</button>
+    <p class="hv-li" data-t="have">Already have account? <b>Log in</b></p>
   </div>
 </section>
 
 <section class="scr" data-id="units">
   <div class="hv-pad">
-    <h1 class="hv-ut">Select Units</h1>
+    <h1 class="hv-ut" data-t="u_h">Select Units</h1>
     <div class="hv-units" data-hl="3">
-      <p class="hv-ul">Weight</p>
+      <p class="hv-ul" data-t="u_w">Weight</p>
       <div class="hv-seg"><button data-pick="unit:kg">kg</button><button data-pick="unit:lbs">lbs</button></div>
-      <p class="hv-ul">Distance</p>
-      <div class="hv-seg"><button data-pick="dist:km">kilometers</button><button data-pick="dist:mi">miles</button></div>
-      <p class="hv-ul">Body Measurements</p>
+      <p class="hv-ul" data-t="u_d">Distance</p>
+      <div class="hv-seg"><button data-pick="dist:km"><span data-t="u_km">kilometers</span></button><button data-pick="dist:mi"><span data-t="u_mi">miles</span></button></div>
+      <p class="hv-ul" data-t="u_m">Body Measurements</p>
       <div class="hv-seg"><button data-pick="meas:cm">cm</button><button data-pick="meas:in">in</button></div>
     </div>
-    <button class="hv-cta" data-go="next">Continue</button>
+    <button class="hv-cta" data-go="next" data-t="next">Continue</button>
   </div>
 </section>
 
 <section class="scr" data-id="ask-a" data-ad="a">
   <div class="hv-pad">
     <div class="hv-top"><button class="hv-bk" data-back aria-label="Back"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="hv-prog"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
-    <h1 class="hv-q">What is your top goal?</h1>
+    <h1 class="hv-q" data-t="aska_h">What is your top goal?</h1>
     <div style="display:flex;flex-direction:column;gap:10px" data-hl="a2">
-      <button class="hv-opt" data-pick="goal:muscle"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M5 18c2-6 4-9 7-11 1.5-1 3-.6 3.6.6.6 1.3-.2 2.6-1.6 3.4M5 18c3 1 7 1 10-1 2-1.3 3.4-3.4 3-5.6-.3-1.6-1.8-2.6-3.4-2.4"/></svg></span><span class="hv-ot">Build Muscle</span><i class="hv-rad"></i></button>
-      <button class="hv-opt" data-pick="goal:strength"><span class="hv-oi"><svg viewBox="0 0 24 24"><circle cx="9" cy="5" r="2"/><path d="M3 9h18M5 7v4M19 7v4M7 15h10M9 13l3-4 3 4M12 15v5M8 20h8"/></svg></span><span class="hv-ot">Gain Strength</span><i class="hv-rad"></i></button>
-      <button class="hv-opt" data-pick="goal:fat"><span class="hv-oi"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 9.5a5 5 0 0 1 7 0L12 12"/></svg></span><span class="hv-ot">Fat Loss</span><i class="hv-rad"></i></button>
+      <button class="hv-opt" data-pick="goal:muscle"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M5 18c2-6 4-9 7-11 1.5-1 3-.6 3.6.6.6 1.3-.2 2.6-1.6 3.4M5 18c3 1 7 1 10-1 2-1.3 3.4-3.4 3-5.6-.3-1.6-1.8-2.6-3.4-2.4"/></svg></span><span class="hv-ot" data-t="goal_muscle">Build Muscle</span><i class="hv-rad"></i></button>
+      <button class="hv-opt" data-pick="goal:strength"><span class="hv-oi"><svg viewBox="0 0 24 24"><circle cx="9" cy="5" r="2"/><path d="M3 9h18M5 7v4M19 7v4M7 15h10M9 13l3-4 3 4M12 15v5M8 20h8"/></svg></span><span class="hv-ot" data-t="goal_strength">Gain Strength</span><i class="hv-rad"></i></button>
+      <button class="hv-opt" data-pick="goal:fat"><span class="hv-oi"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 9.5a5 5 0 0 1 7 0L12 12"/></svg></span><span class="hv-ot" data-t="goal_fat">Fat Loss</span><i class="hv-rad"></i></button>
     </div>
-    <p class="hv-priv">Your data is private and secure.</p>
-    <button class="hv-cta" style="margin-top:0" data-go="next">Continue</button>
+    <p class="hv-priv" data-t="priv">Your data is private and secure.</p>
+    <button class="hv-cta" style="margin-top:0" data-go="next" data-t="next">Continue</button>
   </div>
 </section>
 
 <section class="scr" data-id="ask-b" data-ad="b">
   <div class="hv-pad">
     <div class="hv-top"><button class="hv-bk" data-back aria-label="Back"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="hv-prog"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
-    <h1 class="hv-q">Which muscle group do you want to focus on?</h1>
-    <p class="hv-qs">Your program will be well-rounded, but you can highlight one muscle group for extra attention.</p>
-    <button class="hv-opt" data-pick="focus:balanced"><span class="hv-ot">Balanced Program</span><i class="hv-rad"></i></button>
+    <h1 class="hv-q" data-t="askb_h">Which muscle group do you want to focus on?</h1>
+    <p class="hv-qs" data-t="askb_s">Your program will be well-rounded, but you can highlight one muscle group for extra attention.</p>
+    <button class="hv-opt" data-pick="focus:balanced"><span class="hv-ot" data-t="f_bal">Balanced Program</span><i class="hv-rad"></i></button>
     <div class="hv-plus">+</div>
-    <button class="hv-opt" data-pick="focus:core"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M8 4c-1 3-1 13 0 16M16 4c1 3 1 13 0 16M10 8h4M10 12h4M10 16h4"/></svg></span><span class="hv-ot">Core</span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="focus:chest"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M4 7c3-2 5-2 8 0 3-2 5-2 8 0v5c0 3-3 5-8 5s-8-2-8-5z"/><path d="M12 7v10"/></svg></span><span class="hv-ot">Chest</span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="focus:arms"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M5 18c2-6 4-9 7-11 1.5-1 3-.6 3.6.6.6 1.3-.2 2.6-1.6 3.4M5 18c3 1 7 1 10-1 2-1.3 3.4-3.4 3-5.6-.3-1.6-1.8-2.6-3.4-2.4"/></svg></span><span class="hv-ot">Arms</span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="focus:legs"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M9 3v7l-2 10M15 3v7l2 10M9 10h6"/></svg></span><span class="hv-ot">Legs</span><i class="hv-rad"></i></button>
-    <button class="hv-cta" data-go="next">Continue</button>
+    <button class="hv-opt" data-pick="focus:core"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M8 4c-1 3-1 13 0 16M16 4c1 3 1 13 0 16M10 8h4M10 12h4M10 16h4"/></svg></span><span class="hv-ot" data-t="f_core">Core</span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="focus:chest"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M4 7c3-2 5-2 8 0 3-2 5-2 8 0v5c0 3-3 5-8 5s-8-2-8-5z"/><path d="M12 7v10"/></svg></span><span class="hv-ot" data-t="f_chest">Chest</span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="focus:arms"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M5 18c2-6 4-9 7-11 1.5-1 3-.6 3.6.6.6 1.3-.2 2.6-1.6 3.4M5 18c3 1 7 1 10-1 2-1.3 3.4-3.4 3-5.6-.3-1.6-1.8-2.6-3.4-2.4"/></svg></span><span class="hv-ot" data-t="f_arms">Arms</span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="focus:legs"><span class="hv-oi"><svg viewBox="0 0 24 24"><path d="M9 3v7l-2 10M15 3v7l2 10M9 10h6"/></svg></span><span class="hv-ot" data-t="f_legs">Legs</span><i class="hv-rad"></i></button>
+    <button class="hv-cta" data-go="next" data-t="next">Continue</button>
   </div>
 </section>
 
 <section class="scr" data-id="ask-c" data-ad="c">
   <div class="hv-pad">
     <div class="hv-top"><button class="hv-bk" data-back aria-label="Back"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><div class="hv-prog"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
-    <h1 class="hv-q">How often do you want to work out?</h1>
-    <button class="hv-opt" data-pick="freq:2"><span class="hv-ot">2 per week</span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="freq:3"><span class="hv-ot">3 per week</span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="freq:4"><span class="hv-ot">4 per week</span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="freq:5"><span class="hv-ot"><span>5 per week<span class="hv-rec">Recommended</span></span></span><i class="hv-rad"></i></button>
-    <button class="hv-opt" data-pick="freq:6"><span class="hv-ot">6 per week</span><i class="hv-rad"></i></button>
-    <button class="hv-cta" data-go="next">Continue</button>
+    <h1 class="hv-q" data-t="askc_h">How often do you want to work out?</h1>
+    <button class="hv-opt" data-pick="freq:2"><span class="hv-ot" data-t="pw2">2 per week</span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="freq:3"><span class="hv-ot" data-t="pw3">3 per week</span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="freq:4"><span class="hv-ot" data-t="pw4">4 per week</span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="freq:5"><span class="hv-ot"><span data-t="pw5">5 per week<span class="hv-rec">Recommended</span></span></span><i class="hv-rad"></i></button>
+    <button class="hv-opt" data-pick="freq:6"><span class="hv-ot" data-t="pw6">6 per week</span><i class="hv-rad"></i></button>
+    <button class="hv-cta" data-go="next" data-t="next">Continue</button>
   </div>
 </section>
 
 <section class="scr" data-id="value-a" data-ad="a">
   <div class="hv-pad" style="padding-bottom:12px">
-    <p class="hv-rk">Recommended Program</p>
-    <h1 class="hv-pt">Your Personalized Program</h1>
+    <p class="hv-rk" data-t="va_rk">Recommended Program</p>
+    <h1 class="hv-pt" data-t="va_h">Your Personalized Program</h1>
     <p class="hv-ps hvGoalLine">Boost your strength gain with a custom training program tailored to your experience level.</p>
     <div class="hv-grid">
-      <div class="hv-card"><small>Goal</small><b data-bind="label:goal"></b><svg viewBox="0 0 24 24"><circle cx="9" cy="5" r="2"/><path d="M3 9h18M5 7v4M19 7v4M7 15h10M9 13l3-4 3 4M12 15v5M8 20h8"/></svg></div>
-      <div class="hv-card"><small>Equipment</small><b>Commercial Gym</b><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M10 21v-5h4v5"/></svg></div>
-      <div class="hv-card"><small>Level</small><b>Intermediate</b><div class="hv-bars"><i class="on"></i><i class="on"></i><i></i></div></div>
-      <div class="hv-card"><small>Workouts/week</small><b>4</b><div class="hv-bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+      <div class="hv-card"><small data-t="l_goal">Goal</small><b data-bind="label:goal"></b><svg viewBox="0 0 24 24"><circle cx="9" cy="5" r="2"/><path d="M3 9h18M5 7v4M19 7v4M7 15h10M9 13l3-4 3 4M12 15v5M8 20h8"/></svg></div>
+      <div class="hv-card"><small data-t="l_eq">Equipment</small><b data-t="l_gym">Commercial Gym</b><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M10 21v-5h4v5"/></svg></div>
+      <div class="hv-card"><small data-t="l_lvl">Level</small><b data-t="l_int">Intermediate</b><div class="hv-bars"><i class="on"></i><i class="on"></i><i></i></div></div>
+      <div class="hv-card"><small data-t="l_wk">Workouts/week</small><b>4</b><div class="hv-bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
     </div>
-    <h2 class="hv-sec">Training Strategy</h2>
-    <div class="hv-strat"><div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 15l6-6M10 9h5v5"/></svg><p style="margin:0"><b>Progressive Overload</b><span>Gradually increase weight or reps to keep making progress.</span></p></div><div><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/></svg><p style="margin:0"><b>Progress Report</b><span>See how you’re improving so you always know what to do next.</span></p></div></div>
+    <h2 class="hv-sec" data-t="va_strat">Training Strategy</h2>
+    <div class="hv-strat"><div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 15l6-6M10 9h5v5"/></svg><p style="margin:0"><b data-t="po_t">Progressive Overload</b><span data-t="po_s">Gradually increase weight or reps to keep making progress.</span></p></div><div><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"/></svg><p style="margin:0"><b data-t="pr_t">Progress Report</b><span data-t="pr_s">See how you’re improving so you always know what to do next.</span></p></div></div>
   </div>
-  <div class="hv-dock"><button class="hv-cta" data-go="next">Save Program</button></div>
-  <div class="hv-load"><h2>We’re preparing your personalized program</h2><div class="hv-ring"><svg viewBox="0 0 150 150"><circle class="hv-rt" cx="75" cy="75" r="65"/><circle class="hv-rp" cx="75" cy="75" r="65"/></svg><b class="hvPct">100%</b></div></div>
+  <div class="hv-dock"><button class="hv-cta" data-go="next" data-t="va_save">Save Program</button></div>
+  <div class="hv-load"><h2 data-t="va_load">We’re preparing your personalized program</h2><div class="hv-ring"><svg viewBox="0 0 150 150"><circle class="hv-rt" cx="75" cy="75" r="65"/><circle class="hv-rp" cx="75" cy="75" r="65"/></svg><b class="hvPct">100%</b></div></div>
 </section>
 
 <section class="scr" data-id="value-b" data-ad="b">
   <div class="hv-pad" style="gap:11px">
-    <div class="hv-lgh"><b><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg> Log Workout</b><span style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:var(--b-ink);fill:none;stroke-width:1.8"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 3h6"/></svg><span class="hv-fin">Finish</span></span></div>
-    <div class="hv-sum"><span><small>Duration</small><b>2min</b></span><span><small>Volume</small><b class="hvVol">0 kg</b></span><span><small>Sets</small><b class="hvSets">0</b></span></div>
+    <div class="hv-lgh"><b><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg> <span data-t="lg_h">Log Workout</span></b><span style="display:flex;gap:12px;align-items:center"><svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:var(--b-ink);fill:none;stroke-width:1.8"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 3h6"/></svg><span class="hv-fin" data-t="lg_fin">Finish</span></span></div>
+    <div class="hv-sum"><span><small data-t="l_dur">Duration</small><b>2min</b></span><span><small data-t="l_vol">Volume</small><b class="hvVol">0 kg</b></span><span><small data-t="l_sets">Sets</small><b class="hvSets">0</b></span></div>
     <div class="hv-ex"><span class="hv-exi"><svg viewBox="0 0 24 24"><path d="M6 8v8M3.5 10v4M18 8v8M20.5 10v4M6 12h12"/></svg></span><span class="hv-exn hvLift">Bench Press (Barbell)</span><span style="color:var(--b-ink2)">⋮</span></div>
-    <div class="hv-rest"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4M9 3h6"/></svg>Rest Timer: 1min 30s</div>
+    <div class="hv-rest"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4M9 3h6"/></svg><span data-t="lg_rest">Rest Timer: 1min 30s</span></div>
     <div class="hv-tbl" data-hl="b2">
-      <div class="hv-tr h"><span>SET</span><span>PREVIOUS</span><span class="hvUnitH">KG</span><span>REPS</span><span>✓</span></div>
+      <div class="hv-tr h"><span data-t="lg_set">SET</span><span data-t="lg_prev">PREVIOUS</span><span class="hvUnitH">KG</span><span data-t="lg_reps">REPS</span><span>✓</span></div>
       <div class="hv-tr alt hvRow1"><span>1</span><span class="pv">–</span><span class="hvW">60</span><span class="hvR">8</span><button class="hv-chk" aria-label="Log set 1"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button></div>
       <div class="hv-tr"><span>2</span><span class="pv">–</span><span class="hvW" style="color:var(--b-ink2)">60</span><span class="hvR" style="color:var(--b-ink2)">8</span><span class="hv-chk" style="cursor:default"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
       <div class="hv-tr alt"><span>3</span><span class="pv">–</span><span class="hvW" style="color:var(--b-ink2)">60</span><span class="hvR" style="color:var(--b-ink2)">8</span><span class="hv-chk" style="cursor:default"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div>
     </div>
-    <button class="hv-add">+ Add Set</button>
-    <div class="hv-note"><span data-show="logged:">Tap ✓ to log your first set. Your <span data-bind="label:focus"></span> day starts here.</span><span data-show="logged:1"><b>Set 1 logged.</b> Next time, <b class="hvPrev">60 kg × 8</b> is already waiting under Previous.</span></div>
-    <button class="hv-cta" data-go="next">Continue</button>
+    <button class="hv-add" data-t="lg_add">+ Add Set</button>
+    <div class="hv-note"><span data-show="logged:"><span data-t="lg_n0">Tap ✓ to log your first set. Your <span data-bind="label:focus"></span> day starts here.</span></span><span data-show="logged:1"><span data-t="lg_n1"><b>Set 1 logged.</b> Next time, <b class="hvPrev">60 kg × 8</b> is already waiting under Previous.</span></span></div>
+    <button class="hv-cta" data-go="next" data-t="next">Continue</button>
   </div>
 </section>
 
 <section class="scr" data-id="value-c" data-ad="c">
   <div class="hv-pad">
-    <h1 class="hv-q" style="margin-top:0">Every workout becomes a card your friends see</h1>
+    <h1 class="hv-q" style="margin-top:0" data-t="vc_h">Every workout becomes a card your friends see</h1>
     <div class="hv-shc" data-hl="c2">
-      <div class="hv-shh"><span class="hv-av">A</span><div><b>alex</b><small>Just now</small></div></div>
-      <div class="hv-shn">Push Day</div>
-      <div class="hv-shs"><span><small>Duration</small><b>1h 5min</b></span><span><small>Volume</small><b class="hvCardVol">8,440 kg</b></span><span><small>Records</small><b>🏅 2</b></span></div>
-      <div class="hv-shf"><span>👍 Like · 💬 Comment</span><span class="hv-wm" aria-label="Hevy"></span></div>
+      <div class="hv-shh"><span class="hv-av">A</span><div><b>alex</b><small data-t="vc_now">Just now</small></div></div>
+      <div class="hv-shn" data-t="vc_day">Push Day</div>
+      <div class="hv-shs"><span><small data-t="l_dur">Duration</small><b>1h 5min</b></span><span><small data-t="l_vol">Volume</small><b class="hvCardVol">8,440 kg</b></span><span><small data-t="l_rec">Records</small><b>🏅 2</b></span></div>
+      <div class="hv-shf"><span data-t="vc_lc">👍 Like · 💬 Comment</span><span class="hv-wm" aria-label="Hevy"></span></div>
     </div>
     <div class="hv-cal">
-      <div class="hv-calh"><b style="font-weight:500">Workout Days Log</b><span><span data-bind="freq"></span> a week</span></div>
-      <div class="hv-calg"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hv-calh"><b style="font-weight:500" data-t="vc_log">Workout Days Log</b><span data-t="vc_wk"><span data-bind="freq"></span> a week</span></div>
+      <div class="hv-calg"><span data-t="d1">M</span><span data-t="d2">T</span><span data-t="d3">W</span><span data-t="d4">T</span><span data-t="d5">F</span><span data-t="d6">S</span><span data-t="d7">S</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     </div>
-    <p class="hv-qs" style="margin:0">Follow your friends, see their progress, and they see yours.</p>
-    <button class="hv-cta" data-go="next">Continue</button>
+    <p class="hv-qs" style="margin:0" data-t="vc_s">Follow your friends, see their progress, and they see yours.</p>
+    <button class="hv-cta" data-go="next" data-t="next">Continue</button>
   </div>
 </section>
 
 <section class="scr" data-id="paywall-a" data-ad="a">
   <div class="hv-pw">
-    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><button class="hv-skip" data-go="offer">Skip</button></div>
+    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><button class="hv-skip" data-go="offer" data-t="skip">Skip</button></div>
     <div class="hv-pws">
-      <h1 class="hv-pt2" data-hl="1">Start your <span data-bind="label:goal"></span> program</h1>
-      <div class="hv-sum3" data-hl="a3"><div><small>Goal</small><b data-bind="label:goal"></b></div><div><small>Level</small><b>Intermediate</b></div><div><small>Workouts/week</small><b>4</b></div></div>
+      <h1 class="hv-pt2" data-hl="1" data-t="pwa_h">Start your <span data-bind="label:goal"></span> program</h1>
+      <div class="hv-sum3" data-hl="a3"><div><small data-t="l_goal">Goal</small><b data-bind="label:goal"></b></div><div><small data-t="l_lvl">Level</small><b data-t="l_int">Intermediate</b></div><div><small data-t="l_wk">Workouts/week</small><b>4</b></div></div>
       <p class="hv-ft">Hevy Trainer</p>
-      <p class="hv-fd">Follow a science-based program with progression. It’s based on your goals and preferences.</p>
-      <div class="hv-feat"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1.5"/><rect x="4" y="14" width="16" height="5" rx="1.5"/></svg><p style="margin:0"><b>Progressive Overload</b><span>Gradually increase weight or reps to keep making progress.</span></p></div>
-      <div class="hv-rate" data-hl="4"><span class="hv-stars">★★★★★</span><span>4.9 · 104K ratings on the App Store</span></div>
+      <p class="hv-fd" data-t="tr_s">Follow a science-based program with progression. It’s based on your goals and preferences.</p>
+      <div class="hv-feat"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1.5"/><rect x="4" y="14" width="16" height="5" rx="1.5"/></svg><p style="margin:0"><b data-t="po_t">Progressive Overload</b><span data-t="po_s">Gradually increase weight or reps to keep making progress.</span></p></div>
+      <div class="hv-rate" data-hl="4"><span class="hv-stars">★★★★★</span><span data-t="rate">4.9 · 104K ratings on the App Store</span></div>
     </div>
     <div class="hv-pwf">
       <div class="hv-plans">
-        <button class="hv-plan" data-pick="plan:month"><em>Monthly</em><b>$2.99</b><small>Billed monthly</small></button>
-        <button class="hv-plan yr" data-pick="plan:year"><span class="hv-sv">Save 33%</span><em>Yearly</em><b>$23.99</b><small>Billed annually</small></button>
-        <button class="hv-plan" data-pick="plan:life"><em>Lifetime</em><b>$74.99</b><small>Pay once</small></button>
+        <button class="hv-plan" data-pick="plan:month"><em data-t="pl_mo">Monthly</em><b data-t="p_mo">$2.99</b><small data-t="pl_mob">Billed monthly</small></button>
+        <button class="hv-plan yr" data-pick="plan:year"><span class="hv-sv" data-t="save">Save 33%</span><em data-t="pl_yr">Yearly</em><b data-t="p_yr">$23.99</b><small data-t="pl_yrb">Billed annually</small></button>
+        <button class="hv-plan" data-pick="plan:life"><em data-t="pl_life">Lifetime</em><b data-t="p_life">$74.99</b><small data-t="pl_once">Pay once</small></button>
       </div>
       <button class="hv-cta" style="margin-top:8px"><span class="hvCta"></span></button>
-      <button class="hv-not" data-go="offer">Not now</button>
-      <p class="hv-fine">Cancel your subscription at any time.</p>
+      <button class="hv-not" data-go="offer" data-t="notnow">Not now</button>
+      <p class="hv-fine" data-t="fine">Cancel your subscription at any time.</p>
     </div>
   </div>
 </section>
 
 <section class="scr" data-id="paywall-b" data-ad="b">
   <div class="hv-pw">
-    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><button class="hv-skip" data-go="offer">Skip</button></div>
+    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><button class="hv-skip" data-go="offer" data-t="skip">Skip</button></div>
     <div class="hv-pws">
-      <h1 class="hv-pt2" data-hl="1">Log every <span data-bind="label:focus"></span> session, without limits</h1>
+      <h1 class="hv-pt2" data-hl="1" data-t="pwb_h">Log every <span data-bind="label:focus"></span> session, without limits</h1>
       <div class="hv-cmp" data-hl="b3">
-        <div class="hv-cmr h"><span>Need to compare?</span><span>Free</span><span class="p">Pro</span></div>
-        <div class="hv-cmr"><span>Create Unlimited Routines</span><span>4 max</span><span class="p">✓</span></div>
-        <div class="hv-cmr"><span>Unlimited Graph History</span><span>3 months</span><span class="p">✓</span></div>
-        <div class="hv-cmr"><span>Unlimited Custom Exercises</span><span>7 max</span><span class="p">✓</span></div>
-        <div class="hv-cmr"><span>Advanced Stats</span><span>limited</span><span class="p">✓</span></div>
-        <div class="hv-cmr"><span>Measurement Tracking</span><span>limited</span><span class="p">✓</span></div>
+        <div class="hv-cmr h"><span data-t="cmp_h">Need to compare?</span><span data-t="cmp_free">Free</span><span class="p">Pro</span></div>
+        <div class="hv-cmr"><span data-t="cmp1">Create Unlimited Routines</span><span data-t="cmp1v">4 max</span><span class="p">✓</span></div>
+        <div class="hv-cmr"><span data-t="cmp2">Unlimited Graph History</span><span data-t="cmp2v">3 months</span><span class="p">✓</span></div>
+        <div class="hv-cmr"><span data-t="cmp3">Unlimited Custom Exercises</span><span data-t="cmp3v">7 max</span><span class="p">✓</span></div>
+        <div class="hv-cmr"><span data-t="cmp4">Advanced Stats</span><span data-t="cmp4v">limited</span><span class="p">✓</span></div>
+        <div class="hv-cmr"><span data-t="cmp5">Measurement Tracking</span><span data-t="cmp5v">limited</span><span class="p">✓</span></div>
       </div>
-      <div class="hv-rate" data-hl="4"><span class="hv-stars">★★★★★</span><span>4.9 · 104K ratings on the App Store</span></div>
+      <div class="hv-rate" data-hl="4"><span class="hv-stars">★★★★★</span><span data-t="rate">4.9 · 104K ratings on the App Store</span></div>
     </div>
     <div class="hv-pwf">
       <div class="hv-plans">
-        <button class="hv-plan" data-pick="plan:month"><em>Monthly</em><b>$2.99</b><small>Billed monthly</small></button>
-        <button class="hv-plan yr" data-pick="plan:year"><span class="hv-sv">Save 33%</span><em>Yearly</em><b>$23.99</b><small>$2.00 a month</small></button>
-        <button class="hv-plan" data-pick="plan:life"><em>Lifetime</em><b>$74.99</b><small>Pay once</small></button>
+        <button class="hv-plan" data-pick="plan:month"><em data-t="pl_mo">Monthly</em><b data-t="p_mo">$2.99</b><small data-t="pl_mob">Billed monthly</small></button>
+        <button class="hv-plan yr" data-pick="plan:year"><span class="hv-sv" data-t="save">Save 33%</span><em data-t="pl_yr">Yearly</em><b data-t="p_yr">$23.99</b><small data-t="pl_yrmo">$2.00 a month</small></button>
+        <button class="hv-plan" data-pick="plan:life"><em data-t="pl_life">Lifetime</em><b data-t="p_life">$74.99</b><small data-t="pl_once">Pay once</small></button>
       </div>
       <button class="hv-cta" style="margin-top:8px"><span class="hvCta"></span></button>
-      <button class="hv-not" data-go="offer">Not now</button>
-      <p class="hv-fine">Cancel your subscription at any time.</p>
+      <button class="hv-not" data-go="offer" data-t="notnow">Not now</button>
+      <p class="hv-fine" data-t="fine">Cancel your subscription at any time.</p>
     </div>
   </div>
 </section>
 
 <section class="scr" data-id="paywall-c" data-ad="c">
   <div class="hv-pw">
-    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><button class="hv-skip" data-go="offer">Skip</button></div>
+    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><button class="hv-skip" data-go="offer" data-t="skip">Skip</button></div>
     <div class="hv-pws">
-      <h1 class="hv-pt2" data-hl="1">Hit <span data-bind="freq"></span> workouts a week, with your friends watching</h1>
+      <h1 class="hv-pt2" data-hl="1" data-t="pwc_h">Hit <span data-bind="freq"></span> workouts a week, with your friends watching</h1>
       <div class="hv-prf" data-hl="4 c3">
-        <div class="hv-big">4.9 <span class="hv-stars">★★★★★</span></div>
-        <p class="hv-fd" style="font-size:14px">Tens of thousands of 5 star reviews · 104K ratings</p>
+        <div class="hv-big" data-t="big">4.9 <span class="hv-stars">★★★★★</span></div>
+        <p class="hv-fd" style="font-size:14px" data-t="tens">Tens of thousands of 5 star reviews · 104K ratings</p>
         <div class="hv-lau"><svg viewBox="0 0 20 28"><path d="M15 26C6 22 3 13 7 3M7 8c-3 0-4-2-4-4 2 0 4 1 4 4zM6 13c-3 0-4-2-4-4 2 0 4 1 4 4zM7 18c-3 0-4-2-4-4 2 0 4 1 4 4z"/></svg>Apps We Love<svg viewBox="0 0 20 28" style="transform:scaleX(-1)"><path d="M15 26C6 22 3 13 7 3M7 8c-3 0-4-2-4-4 2 0 4 1 4 4zM6 13c-3 0-4-2-4-4 2 0 4 1 4 4zM7 18c-3 0-4-2-4-4 2 0 4 1 4 4z"/></svg></div>
       </div>
       <div class="hv-rev"><b>I love Hevy!</b> <span class="hv-stars" style="font-size:12px">★★★★★</span><p>This is by far the best weight training tracker app I have ever used. I downloaded so many (even paid for one) and Hevy was the best for so many different reasons! Love the community on here too :)</p><small>natzgrierson</small></div>
-      <div class="hv-feat"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><p style="margin:0"><b>Advanced Stats</b><span>See your full progress over time.</span></p></div>
+      <div class="hv-feat"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><p style="margin:0"><b data-t="as_t">Advanced Stats</b><span data-t="as_s">See your full progress over time.</span></p></div>
     </div>
     <div class="hv-pwf">
       <div class="hv-plans">
-        <button class="hv-plan" data-pick="plan:month"><em>Monthly</em><b>$2.99</b><small>Billed monthly</small></button>
-        <button class="hv-plan yr" data-pick="plan:year"><span class="hv-sv">Save 33%</span><em>Yearly</em><b>$23.99</b><small>Billed annually</small></button>
-        <button class="hv-plan" data-pick="plan:life"><em>Lifetime</em><b>$74.99</b><small>Pay once</small></button>
+        <button class="hv-plan" data-pick="plan:month"><em data-t="pl_mo">Monthly</em><b data-t="p_mo">$2.99</b><small data-t="pl_mob">Billed monthly</small></button>
+        <button class="hv-plan yr" data-pick="plan:year"><span class="hv-sv" data-t="save">Save 33%</span><em data-t="pl_yr">Yearly</em><b data-t="p_yr">$23.99</b><small data-t="pl_yrb">Billed annually</small></button>
+        <button class="hv-plan" data-pick="plan:life"><em data-t="pl_life">Lifetime</em><b data-t="p_life">$74.99</b><small data-t="pl_once">Pay once</small></button>
       </div>
       <button class="hv-cta" style="margin-top:8px"><span class="hvCta"></span></button>
-      <button class="hv-not" data-go="offer">Not now</button>
-      <p class="hv-fine">Cancel your subscription at any time.</p>
+      <button class="hv-not" data-go="offer" data-t="notnow">Not now</button>
+      <p class="hv-fine" data-t="fine">Cancel your subscription at any time.</p>
     </div>
   </div>
 </section>
@@ -1331,35 +1347,35 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
 <section class="scr sheet hv-sheet" data-id="offer">
   <div class="hv-ob">
     <span class="hv-grab"></span>
-    <div data-show="ad:a"><h1 class="hv-oh">Not ready for a year?</h1><p class="hv-qs" style="margin:6px 0 0">Follow your <span data-bind="label:goal"></span> program month to month, and cancel any time.</p></div>
-    <div data-show="ad:b"><h1 class="hv-oh">Rather pay once?</h1><p class="hv-qs" style="margin:6px 0 0">Unlimited routines, graph history and custom exercises, for good. No renewals.</p></div>
-    <div data-show="ad:c"><h1 class="hv-oh">Not ready for a year?</h1><p class="hv-qs" style="margin:6px 0 0">Keep every stat and every workout in your history, month to month.</p></div>
-    <div class="hv-ofc" data-hl="5"><div><b><span data-show="ad:a">Hevy Pro · Monthly</span><span data-show="ad:b">Hevy Pro · Lifetime</span><span data-show="ad:c">Hevy Pro · Monthly</span></b><small><span data-show="ad:a">Billed monthly</span><span data-show="ad:b">Pay once</span><span data-show="ad:c">Billed monthly</span></small></div><strong><span data-show="ad:a">$2.99<em> / month</em></span><span data-show="ad:b">$74.99</span><span data-show="ad:c">$2.99<em> / month</em></span></strong></div>
-    <button class="hv-cta" style="margin-top:4px"><span data-show="ad:a">Start Monthly</span><span data-show="ad:b">Get Lifetime</span><span data-show="ad:c">Start Monthly</span></button>
-    <button class="hv-lnk" data-back>Continue without Pro</button>
+    <div data-show="ad:a"><h1 class="hv-oh" data-t="of_h1">Not ready for a year?</h1><p class="hv-qs" style="margin:6px 0 0" data-t="of_a">Follow your <span data-bind="label:goal"></span> program month to month, and cancel any time.</p></div>
+    <div data-show="ad:b"><h1 class="hv-oh" data-t="of_h2">Rather pay once?</h1><p class="hv-qs" style="margin:6px 0 0" data-t="of_b">Unlimited routines, graph history and custom exercises, for good. No renewals.</p></div>
+    <div data-show="ad:c"><h1 class="hv-oh" data-t="of_h1">Not ready for a year?</h1><p class="hv-qs" style="margin:6px 0 0" data-t="of_c">Keep every stat and every workout in your history, month to month.</p></div>
+    <div class="hv-ofc" data-hl="5"><div><b><span data-show="ad:a"><span data-t="of_nmo">Hevy Pro · Monthly</span></span><span data-show="ad:b"><span data-t="of_nlife">Hevy Pro · Lifetime</span></span><span data-show="ad:c"><span data-t="of_nmo">Hevy Pro · Monthly</span></span></b><small><span data-show="ad:a"><span data-t="pl_mob">Billed monthly</span></span><span data-show="ad:b"><span data-t="pl_once">Pay once</span></span><span data-show="ad:c"><span data-t="pl_mob">Billed monthly</span></span></small></div><strong><span data-show="ad:a"><span data-t="of_pmo">$2.99<em> / month</em></span></span><span data-show="ad:b"><span data-t="p_life">$74.99</span></span><span data-show="ad:c"><span data-t="of_pmo">$2.99<em> / month</em></span></span></strong></div>
+    <button class="hv-cta" style="margin-top:4px"><span data-show="ad:a"><span data-t="of_cmo">Start Monthly</span></span><span data-show="ad:b"><span data-t="of_clife">Get Lifetime</span></span><span data-show="ad:c"><span data-t="of_cmo">Start Monthly</span></span></button>
+    <button class="hv-lnk" data-back data-t="of_skip">Continue without Pro</button>
   </div>
 </section>
 
 <section class="scr hv-today" data-id="today" data-aside>
   <div class="hv-pw">
-    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><span class="hv-skip">Skip</span></div>
+    <div class="hv-pwh"><span class="hv-logo"><span class="hv-word" aria-label="Hevy"></span><span class="hv-pro">PRO</span></span><span class="hv-skip" data-t="skip">Skip</span></div>
     <div class="hv-pws">
-      <h1 class="hv-pt2">Get Full Access to Hevy</h1>
-      <div class="hv-chips"><div class="hv-chr"><span class="hv-chp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>Goal</span><span class="hv-chp"><svg viewBox="0 0 24 24"><path d="M5 18c2-6 4-9 7-11 1.5-1 3-.6 3.6.6.6 1.3-.2 2.6-1.6 3.4M5 18c3 1 7 1 10-1 2-1.3 3.4-3.4 3-5.6"/></svg>Muscles</span></div><div class="hv-chr"><span class="hv-chp on"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 8 8"/></svg>Personalised Program</span></div><div class="hv-chr"><span class="hv-chp"><svg viewBox="0 0 24 24"><path d="M4 20V6M20 20V6M4 9h16M8 9v5M16 9v5M7 14h10"/></svg>Equipment</span><span class="hv-chp"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0M12 16l4-5"/></svg>Level</span></div></div>
+      <h1 class="hv-pt2" data-t="td_h">Get Full Access to Hevy</h1>
+      <div class="hv-chips"><div class="hv-chr"><span class="hv-chp"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg><span data-t="ch_goal">Goal</span></span><span class="hv-chp"><svg viewBox="0 0 24 24"><path d="M5 18c2-6 4-9 7-11 1.5-1 3-.6 3.6.6.6 1.3-.2 2.6-1.6 3.4M5 18c3 1 7 1 10-1 2-1.3 3.4-3.4 3-5.6"/></svg><span data-t="ch_mus">Muscles</span></span></div><div class="hv-chr"><span class="hv-chp on"><svg viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 8 8"/></svg><span data-t="ch_prog">Personalised Program</span></span></div><div class="hv-chr"><span class="hv-chp"><svg viewBox="0 0 24 24"><path d="M4 20V6M20 20V6M4 9h16M8 9v5M16 9v5M7 14h10"/></svg><span data-t="ch_eq">Equipment</span></span><span class="hv-chp"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0M12 16l4-5"/></svg><span data-t="ch_lvl">Level</span></span></div></div>
       <p class="hv-ft">Hevy Trainer</p>
-      <p class="hv-fd">Follow a science-based program with progression. It’s based on your goals and preferences.</p>
-      <p class="hv-more">And more included with <span class="hv-pro">PRO</span></p>
-      <div class="hv-feat"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1.5"/><rect x="4" y="14" width="16" height="5" rx="1.5"/></svg><p style="margin:0"><b>Unlimited Routines</b><span>Create as many routines as you want</span></p></div>
+      <p class="hv-fd" data-t="tr_s">Follow a science-based program with progression. It’s based on your goals and preferences.</p>
+      <p class="hv-more" data-t="td_more">And more included with <span class="hv-pro">PRO</span></p>
+      <div class="hv-feat"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1.5"/><rect x="4" y="14" width="16" height="5" rx="1.5"/></svg><p style="margin:0"><b data-t="ur_t">Unlimited Routines</b><span data-t="ur_s">Create as many routines as you want</span></p></div>
     </div>
     <div class="hv-pwf">
       <div class="hv-plans">
-        <div class="hv-plan"><em>Monthly</em><b>$2.99</b><small>Billed monthly</small></div>
-        <div class="hv-plan yr on"><span class="hv-sv">Save 33%</span><em>Yearly</em><b>$23.99</b><small>Billed annually</small></div>
-        <div class="hv-plan"><em>Lifetime</em><b>$74.99</b><small>Pay once</small></div>
+        <div class="hv-plan"><em data-t="pl_mo">Monthly</em><b data-t="p_mo">$2.99</b><small data-t="pl_mob">Billed monthly</small></div>
+        <div class="hv-plan yr on"><span class="hv-sv" data-t="save">Save 33%</span><em data-t="pl_yr">Yearly</em><b data-t="p_yr">$23.99</b><small data-t="pl_yrb">Billed annually</small></div>
+        <div class="hv-plan"><em data-t="pl_life">Lifetime</em><b data-t="p_life">$74.99</b><small data-t="pl_once">Pay once</small></div>
       </div>
-      <span class="hv-cta" style="margin-top:8px;text-align:center">Subscribe to Yearly plan</span>
-      <span class="hv-not" style="text-align:center">Not now</span>
-      <p class="hv-fine">Cancel your subscription at any time.</p>
+      <span class="hv-cta" style="margin-top:8px;text-align:center" data-t="td_cta">Subscribe to Yearly plan</span>
+      <span class="hv-not" style="text-align:center" data-t="notnow">Not now</span>
+      <p class="hv-fine" data-t="fine">Cancel your subscription at any time.</p>
     </div>
   </div>
 </section>
@@ -1461,17 +1477,17 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
   }
  },
  "chips": {
-  "ad": "Meta ad",
-  "welcome-a": "Welcome",
-  "welcome-b": "Welcome",
-  "welcome-c": "Welcome",
+  "ad": "The ad",
+  "welcome-a": "Arrive",
+  "welcome-b": "Arrive",
+  "welcome-c": "Arrive",
   "units": "Units",
-  "ask-a": "Top goal",
-  "ask-b": "Muscle focus",
-  "ask-c": "Workouts a week",
-  "value-a": "Their program",
-  "value-b": "First set",
-  "value-c": "Workout card",
+  "ask-a": "One question",
+  "ask-b": "One question",
+  "ask-c": "One question",
+  "value-a": "First win",
+  "value-b": "First win",
+  "value-c": "First win",
   "paywall-a": "Paywall",
   "paywall-b": "Paywall",
   "paywall-c": "Paywall",
@@ -1490,36 +1506,36 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
  "ideas": [
   {
    "screen": "paywall-a",
-   "title": "Make the paywall answer the questions they just answered",
-   "what": "Today 12 answers, including “I want to build my own workouts”, end on the same “Get Full Access to Hevy”, led by Hevy Trainer for everyone. Name their goal in the headline (“Start your Gain Strength program”) and lead with the Pro feature their answers point to: the Trainer for “be guided”, unlimited routines and graph history for “build my own”.",
+   "title": "Name their goal on the paywall",
+   "what": "Today 12 answers, including “I want to build my own workouts”, end on the same “Get Full Access to Hevy”, led by Hevy Trainer for everyone. Here the headline names the goal they picked, “Start your Gain Strength program”, over the program they just saw built.",
    "impact": "+10–20%",
    "il": "CR to purchase"
   },
   {
    "screen": "welcome-a",
-   "title": "Ask for the account after the paywall, not before the first question",
-   "what": "Today the first thing after your carousel is Sign up with Apple, Google or Email, then a username, before Hevy has shown anything. Open on one “Get started” (keep “Already have account? Log in”) and ask for the account where it saves something: their program, their first set, after the paywall.",
+   "title": "Ask for the account after the plan",
+   "what": "Today the first thing after your carousel is Sign up with Apple, Google or Email, then a username, before Hevy has shown anything. Here one “Get started” opens the flow, “Already have account? Log in” stays, and the account comes after the plan, to save their program or first set.",
    "impact": "+5–10%",
    "il": "CR to purchase"
   },
   {
    "screen": "units",
-   "title": "Hold the two permission prompts until after the paywall",
-   "what": "Today “Hevy Would Like to Send You Notifications” pops up over “Select Units”, and Apple Health asks on the next screen, both before the first question. Keep “Select Units” as it is and ask for both after the paywall, when a reminder and a synced workout have a reason.",
+   "title": "Hold both permission prompts until after the paywall",
+   "what": "Today “Hevy Would Like to Send You Notifications” pops up over “Select Units”, and Apple Health asks on the next screen, both before the first question. Here “Select Units” stays as it is, and both prompts come after the paywall, when a reminder and a synced workout have a reason.",
    "impact": "+10–15%",
    "il": "CR to purchase"
   },
   {
    "screen": "paywall-c",
-   "title": "Bring your 4.9 stars and reviews up to the plans",
-   "what": "Today “What our users are saying”, “Tens of thousands of 5 star reviews”, a five-star review and Apple’s “Apps We Love” sit four screens down your paywall, under seven feature rows; the first screen shows no rating at all. Move them above the plan cards, with the 4.9 from 104K ratings on your listing.",
+   "title": "Put your 4.9 stars by the plans",
+   "what": "Today “Tens of thousands of 5 star reviews”, a five-star review and Apple’s “Apps We Love” sit four screens down your paywall, under seven feature rows. Your App Store page shows 4.9 from 104K ratings. Here they sit above the plan cards, in view while the plan is chosen.",
    "impact": "+5–10%",
    "il": "CR to purchase"
   },
   {
    "screen": "offer",
-   "title": "Offer a second plan when they tap Not now",
-   "what": "Today “Not now” opens “Are you sure?”, which lists Pro again and ends on “Continue without guidance”. Offer one plan you already sell instead: Monthly at $2.99 to someone who wants the program, Lifetime at $74.99 to someone who just logs. No timer, no invented discount.",
+   "title": "Offer a second plan on Not now",
+   "what": "Today “Not now” opens “Are you sure?”, which lists Pro again and ends on “Continue without guidance”. Here it offers one plan you already sell: Monthly at $2.99 to someone following a program, Lifetime at $74.99 to someone who just logs. No timer, no invented discount.",
    "impact": "+10–15%",
    "il": "ARPU"
   }
@@ -1528,7 +1544,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
   "ad": {
    "idea": 0,
    "t": "Opens on your Meta ad",
-   "why": "Your “Hevy” page’s video ads as the Facebook feed shows them: seeing progress, With Hevy / Without Hevy, and “the gym’s Strava”. They ran Nov 2025 and Feb–Mar 2026."
+   "why": "Your “Hevy” page’s video ads as the feed showed them: “start seeing progress”, With Hevy / Without Hevy, “the gym’s Strava”. Paused since 23 March 2026."
   },
   "welcome-a": {
    "idea": 2,
@@ -1536,7 +1552,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
    "why": "<b>Try</b> opening on your own “Turn your training into visible progress.” slide with one “Get started”, <b>because</b> the video promised progress and today the first ask is an account.",
    "iv": "CR +5–10%",
    "il": "to purchase",
-   "also": "Version A, recommendation 1: the ad’s promise on the first screen."
+   "also": "From your “start seeing progress” ad, recommendation 1: the video’s promise on the first screen."
   },
   "welcome-b": {
    "idea": 2,
@@ -1544,7 +1560,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
    "why": "<b>Try</b> “Log it. Track it. Smash it.” over your Log Workout slide with one “Get started”, <b>because</b> that is the whole video, and an account can wait until there is something to save.",
    "iv": "CR +5–10%",
    "il": "to purchase",
-   "also": "Version B, recommendation 1."
+   "also": "From your “Log it. Track it. Smash it.” ad, recommendation 1."
   },
   "welcome-c": {
    "idea": 2,
@@ -1552,7 +1568,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
    "why": "<b>Try</b> opening on your own “Connect with athletes who share your goals.” slide, <b>because</b> the video sold “the gym’s Strava”, and today that slide is third, behind a sign-up wall.",
    "iv": "CR +5–10%",
    "il": "to purchase",
-   "also": "Version C, recommendation 1."
+   "also": "From your “gym’s Strava” ad, recommendation 1."
   },
   "units": {
    "idea": 3,
@@ -1564,7 +1580,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
   "ask-a": {
    "idea": 0,
    "t": "Your goal question, the one the ad left open",
-   "why": "<b>Try</b> “What is your top goal?” first and skip “build your own or be guided?”, <b>because</b> “Stop guessing your workouts” already answered it. Version A, recommendation 2."
+   "why": "<b>Try</b> “What is your top goal?” first and skip “build your own or be guided?”, <b>because</b> “Stop guessing your workouts” already answered it."
   },
   "ask-b": {
    "idea": 0,
@@ -1584,12 +1600,12 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
   "value-b": {
    "idea": 0,
    "t": "Set 1, logged before the price",
-   "why": "<b>Try</b> one tap that logs set 1 of their lift, Previous filled next time, <b>because</b> the video’s point is never guessing a weight. Version B, recommendation 2."
+   "why": "<b>Try</b> one tap that logs set 1 of their lift, Previous filled next time, <b>because</b> the video’s point is never guessing a weight."
   },
   "value-c": {
    "idea": 0,
    "t": "Their first workout card",
-   "why": "<b>Try</b> the ad’s workout card and their Workout Days Log, <b>because</b> that card is what the video showed. Version C, recommendation 2."
+   "why": "<b>Try</b> the ad’s workout card and their Workout Days Log, <b>because</b> that card is what the video showed."
   },
   "paywall-a": {
    "idea": 1,
@@ -1628,10 +1644,360 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
    "why": "“Get Full Access to Hevy”, rebuilt with US prices: Hevy Trainer first, reviews and Free vs Pro four screens down. The same for every install."
   }
  },
- "langs": [],
- "i18n": {},
- "prices": {},
- "labelsI18n": {},
+ "langs": [
+  {
+   "code": "en",
+   "name": "EN"
+  },
+  {
+   "code": "es",
+   "name": "ES"
+  },
+  {
+   "code": "fr",
+   "name": "FR"
+  }
+ ],
+ "i18n": {
+  "es": {
+   "fb_spon": "Publicidad · ◍",
+   "fb_inst": "Instalar ahora",
+   "fb_like": "👍 Me gusta",
+   "fb_com": "💬 Comentar",
+   "fb_share": "↗ Compartir",
+   "wel_a": "Convierte tu entrenamiento en progreso visible.",
+   "wel_b": "Regístralo. Síguelo. Supéralo.",
+   "wel_c": "Conecta con atletas que comparten tus objetivos.",
+   "wel_cta": "Empezar",
+   "have": "¿Ya tienes cuenta? <b>Inicia sesión</b>",
+   "next": "Continuar",
+   "u_h": "Seleccionar unidades",
+   "u_w": "Peso",
+   "u_d": "Distancia",
+   "u_m": "Medidas corporales",
+   "u_km": "kilómetros",
+   "u_mi": "millas",
+   "aska_h": "¿Cuál es tu objetivo principal?",
+   "goal_muscle": "Ganar músculo",
+   "goal_strength": "Ganar fuerza",
+   "goal_fat": "Perder grasa",
+   "priv": "Tus datos son privados y seguros.",
+   "askb_h": "¿En qué grupo muscular quieres centrarte?",
+   "askb_s": "Tu programa será equilibrado, pero puedes destacar un grupo muscular para darle más atención.",
+   "f_bal": "Programa equilibrado",
+   "f_core": "Core",
+   "f_chest": "Pecho",
+   "f_arms": "Brazos",
+   "f_legs": "Piernas",
+   "askc_h": "¿Con qué frecuencia quieres entrenar?",
+   "pw2": "2 por semana",
+   "pw3": "3 por semana",
+   "pw4": "4 por semana",
+   "pw5": "5 por semana<span class=\"hv-rec\">Recomendado</span>",
+   "pw6": "6 por semana",
+   "va_rk": "Programa recomendado",
+   "va_h": "Tu programa personalizado",
+   "l_goal": "Objetivo",
+   "l_eq": "Equipamiento",
+   "l_gym": "Gimnasio comercial",
+   "l_lvl": "Nivel",
+   "l_int": "Intermedio",
+   "l_wk": "Entrenos/semana",
+   "va_strat": "Estrategia de entrenamiento",
+   "po_t": "Sobrecarga progresiva",
+   "po_s": "Aumenta poco a poco el peso o las repeticiones para seguir progresando.",
+   "pr_t": "Informe de progreso",
+   "pr_s": "Mira cómo mejoras para saber siempre qué hacer después.",
+   "va_save": "Guardar programa",
+   "va_load": "Estamos preparando tu programa personalizado",
+   "lg_h": "Registrar entreno",
+   "lg_fin": "Terminar",
+   "l_dur": "Duración",
+   "l_vol": "Volumen",
+   "l_sets": "Series",
+   "l_rec": "Récords",
+   "lg_rest": "Descanso: 1min 30s",
+   "lg_set": "SERIE",
+   "lg_prev": "ANTERIOR",
+   "lg_reps": "REPS",
+   "lg_add": "+ Añadir serie",
+   "lg_n0": "Toca ✓ para registrar tu primera serie. Tu día de <span data-bind=\"label:focus\"></span> empieza aquí.",
+   "lg_n1": "<b>Serie 1 registrada.</b> La próxima vez, <b class=\"hvPrev\">60 kg × 8</b> ya te espera en Anterior.",
+   "vc_h": "Cada entreno se convierte en una tarjeta que ven tus amigos",
+   "vc_now": "Ahora mismo",
+   "vc_day": "Día de empuje",
+   "vc_lc": "👍 Me gusta · 💬 Comentar",
+   "vc_log": "Registro de días de entreno",
+   "vc_wk": "<span data-bind=\"freq\"></span> por semana",
+   "vc_s": "Sigue a tus amigos, mira su progreso y que ellos vean el tuyo.",
+   "skip": "Omitir",
+   "pwa_h": "Empieza tu programa: <span data-bind=\"label:goal\"></span>",
+   "pwb_h": "Registra cada sesión de <span data-bind=\"label:focus\"></span>, sin límites",
+   "pwc_h": "<span data-bind=\"freq\"></span> entrenos a la semana, con tus amigos mirando",
+   "tr_s": "Sigue un programa con base científica y progresión, según tus objetivos y preferencias.",
+   "rate": "4,9 · 20,5 mil valoraciones",
+   "pl_mo": "Mensual",
+   "p_mo": "{mo}",
+   "pl_mob": "Facturado cada mes",
+   "save": "Ahorra {save}",
+   "pl_yr": "Anual",
+   "p_yr": "{yr}",
+   "pl_yrb": "Facturado cada año",
+   "pl_yrmo": "{yrmo} al mes",
+   "pl_life": "De por vida",
+   "p_life": "{life}",
+   "pl_once": "Pago único",
+   "notnow": "Ahora no",
+   "fine": "Cancela tu suscripción cuando quieras.",
+   "cmp_h": "¿Quieres comparar?",
+   "cmp_free": "Gratis",
+   "cmp1": "Rutinas ilimitadas",
+   "cmp1v": "4 máx.",
+   "cmp2": "Historial de gráficos ilimitado",
+   "cmp2v": "3 meses",
+   "cmp3": "Ejercicios personalizados ilimitados",
+   "cmp3v": "7 máx.",
+   "cmp4": "Estadísticas avanzadas",
+   "cmp4v": "limitado",
+   "cmp5": "Seguimiento de medidas",
+   "cmp5v": "limitado",
+   "big": "4,9 <span class=\"hv-stars\">★★★★★</span>",
+   "tens": "Decenas de miles de reseñas de 5 estrellas",
+   "as_t": "Estadísticas avanzadas",
+   "as_s": "Mira todo tu progreso a lo largo del tiempo.",
+   "of_h1": "¿Aún no te ves un año?",
+   "of_h2": "¿Prefieres pagar una vez?",
+   "of_a": "Sigue tu programa mes a mes y cancela cuando quieras.",
+   "of_b": "Rutinas, historial de gráficos y ejercicios personalizados ilimitados, para siempre. Sin renovaciones.",
+   "of_c": "Guarda cada estadística y cada entreno en tu historial, mes a mes.",
+   "of_nmo": "Hevy Pro · Mensual",
+   "of_nlife": "Hevy Pro · De por vida",
+   "of_pmo": "{mo}<em> / mes</em>",
+   "of_cmo": "Empezar mensual",
+   "of_clife": "Comprar de por vida",
+   "of_skip": "Seguir sin Pro",
+   "td_h": "Acceso completo a Hevy",
+   "ch_goal": "Objetivo",
+   "ch_mus": "Músculos",
+   "ch_prog": "Programa personalizado",
+   "ch_eq": "Equipamiento",
+   "ch_lvl": "Nivel",
+   "td_more": "Y mucho más con <span class=\"hv-pro\">PRO</span>",
+   "ur_t": "Rutinas ilimitadas",
+   "ur_s": "Crea todas las rutinas que quieras",
+   "td_cta": "Suscribirse al plan anual",
+   "js_goal_str": "Potencia tu ganancia de fuerza con un programa de entrenamiento adaptado a tu nivel.",
+   "js_goal_other": "Un programa de entrenamiento para %g%, adaptado a tu nivel.",
+   "js_cta_mo": "Suscribirse al plan mensual",
+   "js_cta_yr": "Suscribirse al plan anual",
+   "js_cta_life": "Continuar con De por vida",
+   "js_reps": " reps",
+   "js_lift_bench": "Press de banca (barra)",
+   "js_lift_curl": "Curl de bíceps (mancuerna)",
+   "js_lift_squat": "Sentadilla (barra)",
+   "js_lift_crunch": "Crunch",
+   "js_sep": ".",
+   "d1": "L",
+   "d2": "M",
+   "d3": "X",
+   "d4": "J",
+   "d5": "V",
+   "d6": "S",
+   "d7": "D"
+  },
+  "fr": {
+   "fb_spon": "Sponsorisé · ◍",
+   "fb_inst": "Installer",
+   "fb_like": "👍 J’aime",
+   "fb_com": "💬 Commenter",
+   "fb_share": "↗ Partager",
+   "wel_a": "Transforme ton entraînement en progrès visibles.",
+   "wel_b": "Note-le. Suis-le. Explose-le.",
+   "wel_c": "Retrouve des athlètes qui partagent tes objectifs.",
+   "wel_cta": "Commencer",
+   "have": "Déjà un compte ? <b>Se connecter</b>",
+   "next": "Continuer",
+   "u_h": "Choisir les unités",
+   "u_w": "Poids",
+   "u_d": "Distance",
+   "u_m": "Mensurations",
+   "u_km": "kilomètres",
+   "u_mi": "miles",
+   "aska_h": "Quel est ton objectif principal ?",
+   "goal_muscle": "Prendre du muscle",
+   "goal_strength": "Gagner en force",
+   "goal_fat": "Perdre du gras",
+   "priv": "Tes données sont privées et sécurisées.",
+   "askb_h": "Sur quel groupe musculaire veux-tu te concentrer ?",
+   "askb_s": "Ton programme sera équilibré, mais tu peux mettre l’accent sur un groupe musculaire.",
+   "f_bal": "Programme équilibré",
+   "f_core": "Gainage",
+   "f_chest": "Pectoraux",
+   "f_arms": "Bras",
+   "f_legs": "Jambes",
+   "askc_h": "À quelle fréquence veux-tu t’entraîner ?",
+   "pw2": "2 par semaine",
+   "pw3": "3 par semaine",
+   "pw4": "4 par semaine",
+   "pw5": "5 par semaine<span class=\"hv-rec\">Recommandé</span>",
+   "pw6": "6 par semaine",
+   "va_rk": "Programme recommandé",
+   "va_h": "Ton programme personnalisé",
+   "l_goal": "Objectif",
+   "l_eq": "Équipement",
+   "l_gym": "Salle de sport",
+   "l_lvl": "Niveau",
+   "l_int": "Intermédiaire",
+   "l_wk": "Séances/semaine",
+   "va_strat": "Stratégie d’entraînement",
+   "po_t": "Surcharge progressive",
+   "po_s": "Augmente peu à peu la charge ou les répétitions pour continuer à progresser.",
+   "pr_t": "Bilan de progression",
+   "pr_s": "Vois comment tu progresses pour toujours savoir quoi faire ensuite.",
+   "va_save": "Enregistrer le programme",
+   "va_load": "Nous préparons ton programme personnalisé",
+   "lg_h": "Noter la séance",
+   "lg_fin": "Terminer",
+   "l_dur": "Durée",
+   "l_vol": "Volume",
+   "l_sets": "Séries",
+   "l_rec": "Records",
+   "lg_rest": "Repos : 1min 30s",
+   "lg_set": "SÉRIE",
+   "lg_prev": "PRÉCÉDENT",
+   "lg_reps": "RÉPS",
+   "lg_add": "+ Ajouter une série",
+   "lg_n0": "Touche ✓ pour noter ta première série. Ta séance de <span data-bind=\"label:focus\"></span> commence ici.",
+   "lg_n1": "<b>Série 1 notée.</b> La prochaine fois, <b class=\"hvPrev\">60 kg × 8</b> t’attend déjà sous Précédent.",
+   "vc_h": "Chaque séance devient une carte que tes amis voient",
+   "vc_now": "À l’instant",
+   "vc_day": "Séance push",
+   "vc_lc": "👍 J’aime · 💬 Commenter",
+   "vc_log": "Journal des jours d’entraînement",
+   "vc_wk": "<span data-bind=\"freq\"></span> par semaine",
+   "vc_s": "Suis tes amis, vois leurs progrès, et ils voient les tiens.",
+   "skip": "Passer",
+   "pwa_h": "Lance ton programme : <span data-bind=\"label:goal\"></span>",
+   "pwb_h": "Note chaque séance de <span data-bind=\"label:focus\"></span>, sans limite",
+   "pwc_h": "<span data-bind=\"freq\"></span> séances par semaine, sous les yeux de tes amis",
+   "tr_s": "Suis un programme scientifique avec progression, basé sur tes objectifs et tes préférences.",
+   "rate": "4,9 · 12 k notes sur l’App Store",
+   "pl_mo": "Mensuel",
+   "p_mo": "{mo}",
+   "pl_mob": "Facturé chaque mois",
+   "save": "Économise {save}",
+   "pl_yr": "Annuel",
+   "p_yr": "{yr}",
+   "pl_yrb": "Facturé chaque année",
+   "pl_yrmo": "{yrmo} par mois",
+   "pl_life": "À vie",
+   "p_life": "{life}",
+   "pl_once": "Paiement unique",
+   "notnow": "Pas maintenant",
+   "fine": "Annule ton abonnement à tout moment.",
+   "cmp_h": "Besoin de comparer ?",
+   "cmp_free": "Gratuit",
+   "cmp1": "Routines illimitées",
+   "cmp1v": "4 max",
+   "cmp2": "Historique des graphiques illimité",
+   "cmp2v": "3 mois",
+   "cmp3": "Exercices personnalisés illimités",
+   "cmp3v": "7 max",
+   "cmp4": "Statistiques avancées",
+   "cmp4v": "limité",
+   "cmp5": "Suivi des mensurations",
+   "cmp5v": "limité",
+   "big": "4,9 <span class=\"hv-stars\">★★★★★</span>",
+   "tens": "Des dizaines de milliers d’avis 5 étoiles",
+   "as_t": "Statistiques avancées",
+   "as_s": "Vois toute ta progression dans le temps.",
+   "of_h1": "Pas prêt pour un an ?",
+   "of_h2": "Tu préfères payer une fois ?",
+   "of_a": "Suis ton programme mois par mois, et annule quand tu veux.",
+   "of_b": "Routines, historique des graphiques et exercices personnalisés illimités, pour toujours. Sans renouvellement.",
+   "of_c": "Garde chaque stat et chaque séance dans ton historique, mois par mois.",
+   "of_nmo": "Hevy Pro · Mensuel",
+   "of_nlife": "Hevy Pro · À vie",
+   "of_pmo": "{mo}<em> / mois</em>",
+   "of_cmo": "Passer au mensuel",
+   "of_clife": "Prendre l’accès à vie",
+   "of_skip": "Continuer sans Pro",
+   "td_h": "Accès complet à Hevy",
+   "ch_goal": "Objectif",
+   "ch_mus": "Muscles",
+   "ch_prog": "Programme personnalisé",
+   "ch_eq": "Équipement",
+   "ch_lvl": "Niveau",
+   "td_more": "Et plus encore avec <span class=\"hv-pro\">PRO</span>",
+   "ur_t": "Routines illimitées",
+   "ur_s": "Crée autant de routines que tu veux",
+   "td_cta": "S’abonner au forfait annuel",
+   "js_goal_str": "Booste ta force avec un programme d’entraînement adapté à ton niveau.",
+   "js_goal_other": "Un programme d’entraînement pour %g%, adapté à ton niveau.",
+   "js_cta_mo": "S’abonner au forfait mensuel",
+   "js_cta_yr": "S’abonner au forfait annuel",
+   "js_cta_life": "Continuer avec l’accès à vie",
+   "js_reps": " rép.",
+   "js_lift_bench": "Développé couché (barre)",
+   "js_lift_curl": "Curl biceps (haltère)",
+   "js_lift_squat": "Squat (barre)",
+   "js_lift_crunch": "Crunch",
+   "js_sep": " ",
+   "d1": "L",
+   "d2": "M",
+   "d3": "M",
+   "d4": "J",
+   "d5": "V",
+   "d6": "S",
+   "d7": "D"
+  }
+ },
+ "prices": {
+  "es": {
+   "mo": "3,49 €",
+   "yr": "26,49 €",
+   "life": "89,99 €",
+   "yrmo": "2,21 €",
+   "save": "37 %"
+  },
+  "fr": {
+   "mo": "3,49 €",
+   "yr": "26,49 €",
+   "life": "89,99 €",
+   "yrmo": "2,21 €",
+   "save": "37 %"
+  }
+ },
+ "labelsI18n": {
+  "es": {
+   "goal": {
+    "muscle": "Ganar músculo",
+    "strength": "Ganar fuerza",
+    "fat": "Perder grasa"
+   },
+   "focus": {
+    "balanced": "cuerpo completo",
+    "core": "core",
+    "chest": "pecho",
+    "arms": "brazos",
+    "legs": "piernas"
+   }
+  },
+  "fr": {
+   "goal": {
+    "muscle": "Prendre du muscle",
+    "strength": "Gagner en force",
+    "fat": "Perdre du gras"
+   },
+   "focus": {
+    "balanced": "full body",
+    "core": "gainage",
+    "chest": "pecs",
+    "arms": "bras",
+    "legs": "jambes"
+   }
+  }
+ },
  "liveUrl": "https://eddieatadapty.github.io/hevy-flow-rebuild-v2/",
  "video": "assets/walkthrough.mp4",
  "poster": "assets/walkthrough-poster.jpg",
@@ -1760,9 +2126,9 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
   ],
   "captions": {
    "ad": {
-    "k": "Your ad",
+    "k": "Your ads",
     "t": "Three of your Meta videos",
-    "l": "Progress, With Hevy / Without Hevy, and the gym’s Strava."
+    "l": "Progress, With Hevy / Without Hevy, the gym’s Strava."
    },
    "welcome-a": {
     "n": 2,
@@ -1779,12 +2145,12 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
     "ol": "CR to purchase"
    },
    "ask-a": {
-    "k": "Version A",
-    "t": "The goal, not “build or be guided”",
-    "l": "The ad already answered that one."
+    "k": "From the progress ad",
+    "t": "One question: their goal",
+    "l": "The video already answered “build or be guided”."
    },
    "value-a": {
-    "k": "Version A",
+    "k": "From the progress ad",
     "t": "Your program screen, kept",
     "l": "Built on the goal they picked."
    },
@@ -1796,12 +2162,12 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
     "ol": "CR to purchase"
    },
    "welcome-b": {
-    "k": "Version B",
+    "k": "From “Log it. Track it.”",
     "t": "Log it. Track it. Smash it.",
     "l": "The ad’s line over your logger slide."
    },
    "value-b": {
-    "k": "Version B",
+    "k": "From “Log it. Track it.”",
     "t": "Set 1, logged before the price",
     "l": "Previous is filled in next time."
    },
@@ -1813,14 +2179,14 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
     "ol": "CR to purchase"
    },
    "value-c": {
-    "k": "Version C",
+    "k": "From the Strava ad",
     "t": "Their first workout card",
     "l": "The card from the ad, and their Workout Days Log."
    },
    "paywall-c": {
     "n": 4,
     "t": "Your 4.9 stars at the plans",
-    "l": "104K ratings, Apps We Love, your own review, moved up.",
+    "l": "104K ratings, Apps We Love and a five-star review, moved up.",
     "o": "+5–10%",
     "ol": "CR to purchase"
    },
@@ -1870,7 +2236,7 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
    "items": [
     {
      "dt": "32 ads, 60 versions, none live",
-     "dd": "The Meta Ad Library, page “Hevy” (id 453778398520668), all ads, read 16 Nov 2026: “Stop guessing your workouts. Start tracking with Hevy 💪” (6 ads, 3–20 Nov 2025, App Store), “Log it. Track it. Smash it. ✅” (6 ads, 10 versions, 23 Feb–13 Mar 2026, App Store and Google Play), “loggen. tracken. durchziehen. ✅” (8 ads, 13 versions) and “Quand tu peux enfin tracker tes entrainements à la salle 💪” (12 ads, 31 versions, 18 Feb–23 Mar 2026). No active ads on 16 Nov. Counts are ads, not spend."
+     "dd": "The Meta Ad Library, page “Hevy” (id 453778398520668), all ads, read 16 Nov 2026: “Stop guessing your workouts. Start tracking with Hevy 💪” (6 ads, 3–20 Nov 2025, App Store), “Log it. Track it. Smash it. ✅” (6 ads, 10 versions, 23 Feb–13 Mar 2026, App Store and Google Play), “loggen. tracken. durchziehen. ✅” (8 ads, 13 versions) and “Quand tu peux enfin tracker tes entrainements à la salle 💪” (12 ads, 31 versions, 18 Feb–23 Mar 2026). No active ads on 16 Nov; the last ended on 23 Mar 2026. Counts are ads, not spend."
     },
     {
      "dt": "The three videos",
@@ -1928,6 +2294,23 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
      "dd": "We recorded iOS only."
     }
    ]
+  },
+  {
+   "group": "Languages",
+   "items": [
+    {
+     "dt": "Phones in EN, ES and FR",
+     "dd": "Spanish because Hevy Studios S.L. is in Barcelona and its people there (CEO, Head of Product, a Marketing Manager for Spain) are who this page is for; French because it is the biggest group in your ad library (12 ads, 31 of 60 versions). The translations are ours, not yours; the ads, natzgrierson’s review and brand names stay in English."
+    },
+    {
+     "dt": "3,49 € · 26,49 € · 89,99 € · Save 37 % · 2,21 € a month",
+     "dd": "The same three in-app purchases on your <a href=\"https://apps.apple.com/es/app/id1458862350\">Spanish</a> and <a href=\"https://apps.apple.com/fr/app/id1458862350\">French</a> App Store listings, read 16 Nov 2026. 26,49 € ÷ 12 = 2,21 €; 12 × 3,49 € = 41,88 €, so the year is 37 % less (your US badge says 33 % on US prices)."
+    },
+    {
+     "dt": "4.9 · 20.5K (ES) · 12K (FR) ratings",
+     "dd": "Each storefront’s own rating, read 16 Nov 2026: Spain 4.88 from 20,554, France 4.9 from 12,083."
+    }
+   ]
   }
  ]
 }
@@ -1941,7 +2324,10 @@ html.jn{--jn-dark:#22211f;--jn-lt:#8ccbfe;--jn-acc:#0a0a0a;--jn-acc2:#008bfc;--j
 var HV_DEF = {a: {goal: 'strength'}, b: {focus: 'chest'}, c: {freq: '5'}};
 var HV_STAGE = {'welcome-a': 'w', 'welcome-b': 'w', 'welcome-c': 'w', 'ask-a': 'q', 'ask-b': 'q', 'ask-c': 'q', 'value-a': 'v', 'value-b': 'v', 'value-c': 'v', 'paywall-a': 'p', 'paywall-b': 'p', 'paywall-c': 'p'};
 var HV_MAP = {w: 'welcome-', q: 'ask-', v: 'value-', p: 'paywall-'};
-var HV_LIFT = {balanced: ['Bench Press (Barbell)', 60, 8], chest: ['Bench Press (Barbell)', 60, 8], arms: ['Bicep Curl (Dumbbell)', 14, 10], legs: ['Squat (Barbell)', 80, 6], core: ['Crunch', 0, 15]};
+var HV_LIFT = {balanced: ['Bench Press (Barbell)', 60, 8, 'bench'], chest: ['Bench Press (Barbell)', 60, 8, 'bench'], arms: ['Bicep Curl (Dumbbell)', 14, 10, 'curl'], legs: ['Squat (Barbell)', 80, 6, 'squat'], core: ['Crunch', 0, 15, 'crunch']};
+/* ES / FR: dynamic strings come from C.i18n[S.lang].js_* (parts/i18n.json); English is the fallback */
+function hvT(k, en){ var T = (C.i18n || {})[S.lang] || {}; return T['js_' + k] != null ? T['js_' + k] : en; }
+function hvN(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, hvT('sep', ',')); }
 var HV_DAYS = {'2': [0, 3], '3': [0, 2, 4], '4': [0, 1, 3, 4], '5': [0, 1, 2, 3, 4], '6': [0, 1, 2, 3, 4, 5]};
 function hvW(kg){ return S.unit === 'lbs' ? Math.round(kg * 2.20462 / 5) * 5 : kg; }
 function hvU(){ return S.unit === 'lbs' ? 'lbs' : 'kg'; }
@@ -1953,20 +2339,20 @@ function hvDefaults(){
 }
 var hvBusy = false;
 window.onSync = function(S){
-  hvAll('.hvGoalLine', function(x){ x.textContent = S.goal === 'strength' ? 'Boost your strength gain with a custom training program tailored to your experience level.' : 'A custom training program for ' + lab('goal') + ', tailored to your experience level.'; });
+  hvAll('.hvGoalLine', function(x){ x.textContent = S.goal === 'strength' ? hvT('goal_str', 'Boost your strength gain with a custom training program tailored to your experience level.') : hvT('goal_other', 'A custom training program for %g%, tailored to your experience level.').replace('%g%', S.lang && S.lang !== 'en' ? lab('goal').toLowerCase() : lab('goal')); });
   var L = HV_LIFT[S.focus] || HV_LIFT.chest, w = hvW(L[1]), u = hvU(), done = S.logged === '1';
-  hvAll('.hvLift', function(x){ x.textContent = L[0]; });
+  hvAll('.hvLift', function(x){ x.textContent = hvT('lift_' + L[3], L[0]); });
   hvAll('.hvW', function(x){ x.textContent = L[1] ? w : '–'; });
   hvAll('.hvR', function(x){ x.textContent = L[2]; });
   hvAll('.hvUnitH', function(x){ x.textContent = u.toUpperCase(); });
-  hvAll('.hvPrev', function(x){ x.textContent = (L[1] ? w + ' ' + u + ' × ' : '') + L[2] + (L[1] ? '' : ' reps'); });
-  hvAll('.hvVol', function(x){ x.textContent = (done ? (L[1] ? w * L[2] : 0) : 0) + ' ' + u; });
+  hvAll('.hvPrev', function(x){ x.textContent = (L[1] ? w + ' ' + u + ' × ' : '') + L[2] + (L[1] ? '' : hvT('reps', ' reps')); });
+  hvAll('.hvVol', function(x){ x.textContent = hvN(done ? (L[1] ? w * L[2] : 0) : 0) + ' ' + u; });
   hvAll('.hvSets', function(x){ x.textContent = done ? '1' : '0'; });
   hvAll('.hvRow1', function(x){ x.classList.toggle('done', done); });
-  hvAll('.hvCardVol', function(x){ x.textContent = S.unit === 'lbs' ? '18,605 lbs' : '8,440 kg'; });
+  hvAll('.hvCardVol', function(x){ x.textContent = S.unit === 'lbs' ? hvN(18607) + ' lbs' : hvN(8440) + ' kg';  /* 8,440 kg × 2.20462 = 18,607 lbs */ });
   var on = HV_DAYS[S.freq] || HV_DAYS['5'];
   hvAll('.hv-calg', function(g){ g.querySelectorAll('i').forEach(function(i, k){ i.classList.toggle('on', on.indexOf(k) > -1); }); });
-  var cta = S.plan === 'month' ? 'Subscribe to Monthly plan' : S.plan === 'life' ? 'Continue with Lifetime' : 'Subscribe to Yearly plan';
+  var cta = S.plan === 'month' ? hvT('cta_mo', 'Subscribe to Monthly plan') : S.plan === 'life' ? hvT('cta_life', 'Continue with Lifetime') : hvT('cta_yr', 'Subscribe to Yearly plan');
   hvAll('.hvCta', function(x){ x.textContent = cta; });
   if (!hvBusy && hvOff()) setTimeout(hvFix, 0);
 };
@@ -2299,7 +2685,7 @@ function tourInit(){
       cap.innerHTML = r ? '<span class="au-duo-k">' + label(id) + '</span>' + r[f.k]
                         : '<span class="au-duo-k">' + label(id) + '</span>' + (shared || 'Same screen for every ad.');
     });
-    var sc = document.getElementById('duoStepCap'); if (sc) sc.innerHTML = shared && id === 'today' ? shared : '';
+    var sc = document.getElementById('duoStepCap'); if (sc) sc.innerHTML = (D.stepLine && D.stepLine[id]) || (shared && id === 'today' ? shared : '');
   }
   function both(id, n, only){
     var st = STEPS.find(function(s){ return s.id === id; }) || stepFor(id);
@@ -2410,6 +2796,15 @@ function tourInit(){
   var app = C.app || J.app || '', demo = J.demo || 'https://adapty.io/schedule-demo/';
   var icon = J.icon || (M.hero && M.hero.icon) || '';
   var root = document.createElement('div'); root.className = 'jn-root';
+  /* channel colours, as the Atlas "Ad to Pro" pages use them: one hue per channel, a darker / lighter shade when two
+     phones come from the same channel. J.channels = {a:'#hex'} overrides. */
+  var CH = {youtube: '#FF0033', apple: '#7346E0', meta: '#0866FF', tiktok: '#FE2C55', google: '#1A73E8', web: '#3D3C3A'};
+  function chanKey(s){ s = String(s || '').toLowerCase(); return /youtube/.test(s) ? 'youtube' : /apple|search|asa|app store/.test(s) ? 'apple' : /tiktok/.test(s) ? 'tiktok' : /google|admob/.test(s) ? 'google' : /web|site/.test(s) && !/meta|facebook|instagram/.test(s) ? 'web' : 'meta'; }
+  function shade(hex, n){ if (!n) return hex; var c = hex.replace('#', '').match(/../g).map(function(x){ return parseInt(x, 16); }), t = n === 1 ? 0 : 255, k = n === 1 ? .3 : .32;
+    return '#' + c.map(function(v){ return ('0' + Math.round(v + (t - v) * k).toString(16)).slice(-2); }).join(''); }
+  var COL = {}, seen = {};
+  (D.flows || []).forEach(function(f){ var ck = chanKey(f.chan); seen[ck] = seen[ck] === undefined ? 0 : seen[ck] + 1; COL[f.k] = (J.channels && J.channels[f.k]) || shade(CH[ck], seen[ck]); });
+  function colFor(a){ if (a.c) return a.c; if (a.flow && COL[a.flow]) return COL[a.flow]; return CH[chanKey(a.chan || a.kind)]; }
 
   /* nav: their mark, "Growth audit · by Adapty", the two views, Book a demo */
   var L = J.logo || {}, logo;
@@ -2445,8 +2840,7 @@ function tourInit(){
   /* 4 your ads: one tab per promise, the ad itself playing, its frames, then what it promises and where it lands */
   var A = J.ads || {tabs: []};
   var ads = '<section class="jn-sec" id="jnAds"><div class="jn-wrap"><p class="jn-kick">' + (A.kick || 'Your ads') + '</p><h2 class="jn-h2">' + halves(A.h2, 'b') + '</h2>' +
-    '<p class="jn-p">' + (A.p || '') + '</p><div class="jn-adtabs" id="jnAdTabs"></div><div class="jn-lib"><div class="jn-media" id="jnMedia"><div class="jn-vid" id="jnAdMedia"></div><div class="jn-strip" id="jnAdStrip"></div></div>' +
-    '<div class="jn-adb" id="jnAdB"></div></div>' + (A.more ? '<p class="jn-more">' + A.more + '</p>' : '') +
+    '<p class="jn-p">' + (A.p || '') + '</p><div class="jn-adlist" id="jnAdList"></div>' + (A.more ? '<p class="jn-more">' + A.more + '</p>' : '') +
     '<p class="jn-foot-l">' + (A.foot || 'Adapty can pick the first screen of the flow from the campaign the install came from, through the attribution you already run. A new promise gets its own first screen the same day, with no app release.') + '</p></div></section>';
 
   /* 5 the five ideas */
@@ -2460,9 +2854,11 @@ function tourInit(){
   /* 6 potential outcome: a dark card in their world + three do-cards (Day 1 / Week 1 / Week 2 from the ads config) */
   var O = J.outcome || {}, co = C.outcome || {};
   var nums = O.nums || [co.cr && [co.cr, O.crl || 'CR to purchase'], co.arpu && [co.arpu, O.arpul || 'ARPU']].filter(Boolean);
-  var dos = O.do || $$('#duo .au-duo-next > div').map(function(x){ return [$('b', x).innerHTML, $('h4', x).innerHTML, $('p', x).innerHTML]; });
-  var outc = '<section class="jn-sec"><div class="jn-wrap"><p class="jn-kick">Potential outcome</p><h2 class="jn-h2">' + halves(O.h2 || ['Five ideas,', 'three versions of one app.'], 'b') + '</h2>' +
-    '<div class="jn-outc"><div class="jn-osh"><div class="jn-og" aria-hidden="true">' + (O.tiles || words.slice(0, 9)).slice(0, 9).map(function(t, k){ return '<i style="--c:' + TC[k % TC.length] + '">' + t + '</i>'; }).join('') + '</div><div class="k">' + (O.k || 'Run together') + '</div><h3>' + (O.t || '') + '</h3>' +
+  var oimg = O.img === false ? '' : (O.img || (C.hero && C.hero[1] ? 'assets/hero/' + C.hero[1] + '.png' : ''));
+  var DOK = ['Do this week', 'Then', 'And measure'];
+  var dos = O.do || $$('#duo .au-duo-next > div').map(function(x, k){ return [DOK[k] || $('b', x).innerHTML, $('h4', x).innerHTML, $('p', x).innerHTML]; });
+  var outc = '<section class="jn-sec"><div class="jn-wrap"><p class="jn-kick">Potential outcome</p><h2 class="jn-h2">' + halves(O.h2 || ['Five ideas,', 'one first launch per ad.'], 'b') + '</h2>' +
+    '<div class="jn-outc"><div class="jn-osh' + (oimg ? ' jn-world' : '') + '">' + (oimg ? '<img class="jn-oimg" src="' + oimg + '" alt="">' : '<div class="jn-og" aria-hidden="true">' + (O.tiles || words.slice(0, 9)).slice(0, 9).map(function(t, k){ return '<i style="--c:' + TC[k % TC.length] + '">' + t + '</i>'; }).join('') + '</div>') + '<div class="k">' + (O.k || 'Run together') + '</div><h3>' + (O.t || '') + '</h3>' +
     '<div class="jn-nums">' + nums.map(function(n){ return '<div><b>' + n[0] + '</b><span>' + n[1] + '</span></div>'; }).join('') + '</div>' +
     '<p class="cap">' + (O.cap || 'Our estimate if the five run together. They overlap, so they don’t add up; each one is its own A/B test against today’s flow.') + '</p></div>' +
     '<div class="jn-do">' + dos.map(function(x){ return '<div><small>' + x[0] + '</small><h4>' + x[1] + '</h4><p>' + x[2] + '</p></div>'; }).join('') + '</div></div>' +
@@ -2479,7 +2875,7 @@ function tourInit(){
   var langs = (C.langs || []).length > 1 ? '<div class="jn-seg" id="jnLang" role="group" aria-label="Language">' + C.langs.map(function(l){ return '<button type="button" data-l="' + l.code + '">' + l.name + '</button>'; }).join('') + '</div>' : '';
   var proto = '<main class="jn-view" id="jnProto"><section class="jn-ph"><div class="jn-wrap"><p class="jn-kick">' + (P.kick || 'Prototype · one first launch per ad') + '</p>' +
     '<h1 class="jn-h1p">' + halves(P.h1 || ['Three ads.', 'Three first launches.'], 'b') + '</h1><p class="jn-p">' + (P.sub || '') + '</p>' +
-    (langs ? '<div class="jn-tool">' + langs + '</div>' : '') + '</div><div id="jnDuoSlot"></div>' +
+    (langs ? '<div class="jn-tool">' + langs + '</div><p class="jn-langnote" id="jnLangNote"></p>' : '') + '</div><div id="jnDuoSlot"></div>' +
     '<div class="jn-wrap"><div class="jn-qr"><div class="jn-qg" aria-hidden="true">' + tiles(48, false) + '</div><img src="assets/qr-app.png" alt="QR code that opens the prototype on a phone"><div class="t"><h4>' + (qr.t || 'Try it on your phone') + '</h4><p>' + (qr.p || 'Scan to open the prototype full screen, the way a new user would see it. Every screen here can be built in Adapty Flow Builder and tested against today’s.') + '</p></div>' +
     '<a class="jn-pill g jn-full" href="?app">Open it full screen</a><a class="jn-pill w" href="' + demo + '" target="_blank" rel="noopener">Book a demo</a></div>' +
     '<p class="jn-protofoot">' + (C.grounding || '') + '</p></div></section></main>';
@@ -2496,7 +2892,11 @@ function tourInit(){
     cards.innerHTML = I.map(function(d, i){ return '<button type="button" class="jn-icard" data-duoidea="' + (i + 1) + '" data-scr="' + d.screen + '"><small>Idea ' + (i + 1) + ' of ' + I.length + '</small><h4>' + d.title + '</h4><p>' + d.what + '</p>' +
       '<div class="jn-rowf">' + chip(d) + '<span class="jn-see">See it on the phones →</span></div>' + (kept[i] ? '<div class="kept">' + kept[i] + '</div>' : '') + '</button>'; }).join('');
     duo.appendChild(cards);
-    (D.flows || []).forEach(function(f){ var p = $('#duo .au-duo-' + f.k + ' .au-duo-pill'); if (p && /apple|search/i.test(f.chan || '')) p.classList.add('asa'); });
+    (D.flows || []).forEach(function(f){ $$('#duo .au-duo-' + f.k).forEach(function(x){ x.style.setProperty('--au-ring', COL[f.k]); }); });
+    /* number the steps the way Atlas does ("1 · The ad"), once trio.js has drawn them */
+    var stp = $('#duoSteps');
+    function numberSteps(){ var n = 0; $$('#duoSteps button[data-id]').forEach(function(b){ if (b.classList.contains('au-today')) return; n++; if (!b.querySelector('.jn-n')) b.insertAdjacentHTML('afterbegin', '<span class="jn-n">' + n + ' · </span>'); }); }
+    if (stp) { numberSteps(); new MutationObserver(numberSteps).observe(stp, {childList: true}); }
   }
 
   /* views */
@@ -2522,7 +2922,6 @@ function tourInit(){
     var o = e.target.closest('[data-open]'); if (o) { show(o.dataset.open); return; }
     var r = e.target.closest('[data-jnidea]'); if (r) { var n = r.dataset.jnidea; show('proto'); ready(function(){ var c = $('.jn-icard[data-duoidea="' + n + '"]'); if (c) c.click(); }); return; }
     var g = e.target.closest('[data-jngo]'); if (g) { var k = g.dataset.jngo; show('proto'); ready(function(){ var b = document.createElement('button'); b.hidden = true; b.dataset.duogo = k; duo.appendChild(b); b.click(); b.remove(); setTimeout(stage, 450); }); return; }
-    var a = e.target.closest('[data-jnad]'); if (a) { drawAd(+a.dataset.jnad); return; }
     var l = e.target.closest('#jnLang [data-l]'); if (l && window.setLang) { setLang(l.dataset.l); paintLang(); }
   });
   /* idea cards scroll the phones into view */
@@ -2532,51 +2931,55 @@ function tourInit(){
     if (!e.target.closest('[data-jnwalk]')) return;
     show('proto'); ready(function(){ var b = $('#walkBtn'); if (b && !b.classList.contains('on')) b.click(); });
   });
-  function paintLang(){ var cur = (window.S && S.lang) || (C.langs && C.langs[0].code); $$('#jnLang [data-l]').forEach(function(b){ b.classList.toggle('on', b.dataset.l === cur); }); }
+  function paintLang(){ var cur = (window.S && S.lang) || (C.langs && C.langs[0].code); $$('#jnLang [data-l]').forEach(function(b){ b.classList.toggle('on', b.dataset.l === cur); });
+    var ln = $('#jnLangNote'); if (ln) { var t = (J.langNote || {})[cur] || ''; ln.innerHTML = t; ln.style.display = t ? '' : 'none'; } }
   paintLang();
 
-  /* the ads card */
-  var tok = 0;
-  function drawAd(i){
-    var T = A.tabs || []; if (!T.length) return; var a = T[i] || T[0], my = ++tok;
-    $('#jnAdTabs').innerHTML = T.map(function(x, k){ return '<button type="button" data-jnad="' + k + '"' + (k === i ? ' class="on"' : '') + '>' + x.tab + (x.n ? ' · ' + x.n + ' ' + (x.unit || (x.n > 1 ? 'ads' : 'ad')) : '') + '</button>'; }).join('');
-    var kind = a.kind || 'video', tag = '<span class="jn-tag' + (kind === 'search' ? ' asa' : kind === 'image' ? ' img' : '') + '">' + (a.chan || 'Meta · running now') + '</span>', m;
-    if (kind === 'video') m = tag + '<video src="' + a.src + '" poster="' + (a.poster || '') + '"' + (a.fit ? ' class="jn-fit"' : '') + ' autoplay muted loop playsinline></video>';
-    else if (kind === 'image') m = tag + '<img src="' + a.src + '" alt="The ad"' + (a.fit ? ' class="jn-fit"' : '') + '>';
-    else if (kind === 'post') m = tag + '<div class="jn-post"><div class="jn-post-h"><img src="' + icon + '" alt=""><div><b>' + (a.page || app) + '</b><small>Sponsored · ◍</small></div><span>···</span></div>' +
+  /* the ads: one card per ad, each playing (video), animating (search) or showing as the feed does (post) */
+  function adMedia(a){
+    var kind = a.kind || 'video', tag = '<span class="jn-tag">' + (a.chan || 'Meta · running now') + '</span>';
+    if (kind === 'video') return tag + '<video src="' + a.src + '" poster="' + (a.poster || '') + '"' + (a.fit ? ' class="jn-fit"' : '') + ' autoplay muted loop playsinline></video>';
+    if (kind === 'image') return tag + '<img src="' + a.src + '" alt="The ad"' + (a.fit ? ' class="jn-fit"' : '') + '>';
+    if (kind === 'post') return tag + '<div class="jn-post"><div class="jn-post-h"><img src="' + icon + '" alt=""><div><b>' + (a.page || app) + '</b><small>Sponsored · ◍</small></div><span>···</span></div>' +
       '<p class="jn-post-t">' + (a.text || '') + '</p><div class="jn-post-m"><img src="' + a.src + '" alt="The ad"></div>' +
       '<div class="jn-post-l"><div><small>' + (a.domain || '') + '</small><b>' + (a.headline || '') + '</b></div><span>' + (a.cta || 'Learn more') + '</span></div></div>';
-    else { var S2 = J.asa || {};
-      m = tag + '<div class="jn-asa"><div class="jn-asa-bar"><span class="jn-asa-q"></span></div><div class="jn-asa-ad"><img src="' + (S2.icon || icon) + '" alt=""><div><b>' + (S2.name || app) + '</b><small>' + (S2.sub || '') + '</small><em>Ad</em></div><span>Get</span></div>' +
-        '<div class="jn-asa-shots">' + (S2.shots || []).slice(0, 3).map(function(s){ return '<img src="' + s + '" alt="">'; }).join('') + '</div></div>'; }
-    var box = $('#jnAdMedia'), media = $('#jnMedia');
-    box.innerHTML = m; box.classList.toggle('asa', kind === 'search'); media.style.removeProperty('--ar');
-    function fitAr(w, h){ if (w && h && my === tok) media.style.setProperty('--ar', w + '/' + h); }
-    var v = $('#jnAdMedia video');
-    if (v) { v.muted = true; v.addEventListener('loadedmetadata', function(){ fitAr(v.videoWidth, v.videoHeight); }); if (v.readyState >= 1) fitAr(v.videoWidth, v.videoHeight); var p = v.play(); if (p && p.catch) p.catch(function(){}); }
-    var im = kind === 'image' && $('#jnAdMedia > img');
-    if (im && !a.fit) { im.onload = function(){ fitAr(im.naturalWidth, im.naturalHeight); }; if (im.complete) fitAr(im.naturalWidth, im.naturalHeight); }
-    $('#jnAdStrip').innerHTML = (a.frames || []).slice(0, 4).map(function(s){ return '<img src="' + s + '" alt="">'; }).join('');
-    $('#jnAdStrip').style.display = (a.frames || []).length ? '' : 'none';
-    $('#jnAdB').innerHTML = '<div class="hook">' + a.hook + '</div>' + (a.en ? '<div class="en">' + a.en + '</div>' : '') + '<div class="meta">' + (a.meta || '') + '</div>' +
-      '<dl><dt>In the ad</dt><dd>' + (a.inad || '') + '</dd><dt>The promise</dt><dd>' + (a.promise || '') + '</dd><dt>Today it lands on</dt><dd>' + (a.today || '') + '</dd>' +
-      (a.rebuild ? '<dt>In the rebuild</dt><dd>' + a.rebuild + '</dd>' : '') + '</dl>' +
-      '<div class="go">' + (a.flow ? '<button type="button" class="jn-pill k" data-jngo="' + a.flow + '">Open its flow</button>' : '<span class="jn-foot-l">' + (a.uses || '') + '</span>') + '</div>';
-    if (kind === 'search') typeTerm(a.term || a.tab.replace(/[“”"]/g, ''), my);
+    var S2 = J.asa || {};
+    return tag + '<div class="jn-asa"><div class="jn-asa-bar"><span class="jn-asa-q"></span></div><div class="jn-asa-ad"><img src="' + (S2.icon || icon) + '" alt=""><div><b>' + (S2.name || app) + '</b><small>' + (S2.sub || '') + '</small><em>Ad</em></div><span>Get</span></div>' +
+      '<div class="jn-asa-shots">' + (S2.shots || []).slice(0, 3).map(function(x){ return '<img src="' + x + '" alt="">'; }).join('') + '</div></div>';
   }
-  function typeTerm(term, my){
-    var q = $('#jnAdMedia .jn-asa-q'), box = $('#jnAdMedia .jn-asa'); if (!q) return;
-    var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (RM) { q.textContent = term; box.classList.add('show'); return; }
+  function drawAds(){
+    var T = A.tabs || [], list = $('#jnAdList'); if (!T.length || !list) return;
+    list.innerHTML = T.map(function(a, i){
+      var kind = a.kind || 'video', tall = kind === 'search' || kind === 'post' || a.tall;
+      return '<article class="jn-card' + (tall ? ' tall' : '') + '" data-card="' + i + '" style="--c:' + colFor(a) + '"><div class="jn-media"><div class="jn-vid' + (kind === 'search' ? ' asa' : '') + '">' + adMedia(a) + '</div>' +
+        ((a.frames || []).length ? '<div class="jn-strip">' + a.frames.slice(0, 4).map(function(x){ return '<img src="' + x + '" alt="">'; }).join('') + '</div>' : '') + '</div>' +
+        '<div class="jn-adb"><div class="hook">' + a.hook + (a.sub ? ' <small>' + a.sub + '</small>' : '') + '</div>' + (a.en ? '<div class="en">' + a.en + '</div>' : '') + '<div class="meta">' + (a.meta || '') + '</div>' +
+        '<dl><dt>' + (kind === 'search' ? 'In the search' : 'In the ad') + '</dt><dd>' + (a.inad || '') + '</dd><dt>The promise</dt><dd>' + (a.promise || '') + '</dd><dt>Today it lands on</dt><dd>' + (a.today || '') + '</dd>' +
+        (a.rebuild ? '<dt>In the rebuild</dt><dd>' + a.rebuild + '</dd>' : '') + '</dl>' +
+        '<div class="go">' + (a.flow ? '<button type="button" class="jn-pill k" data-jngo="' + a.flow + '">Open its flow</button>' : '<span class="jn-foot-l">' + (a.uses || '') + '</span>') + '</div></div></article>';
+    }).join('');
+    T.forEach(function(a, i){
+      var card = $('.jn-card[data-card="' + i + '"]', list), media = $('.jn-media', card);
+      function fitAr(w, h){ if (!w || !h) return; media.style.setProperty('--ar', w + '/' + h); card.classList.toggle('tall', h > w * 1.05 || a.kind === 'search' || a.kind === 'post' || !!a.tall); }
+      var v = $('video', card);
+      if (v) { v.muted = true; v.addEventListener('loadedmetadata', function(){ fitAr(v.videoWidth, v.videoHeight); }); if (v.readyState >= 1) fitAr(v.videoWidth, v.videoHeight); var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+      var im = a.kind === 'image' && $('.jn-vid > img', card);
+      if (im && !a.fit) { im.onload = function(){ fitAr(im.naturalWidth, im.naturalHeight); }; if (im.complete) fitAr(im.naturalWidth, im.naturalHeight); }
+      if (a.kind === 'search') typeTerm(card, a.term || String(a.tab || '').replace(/[“”"]/g, ''), i * 1400);
+    });
+  }
+  function typeTerm(card, term, delay){
+    var q = $('.jn-asa-q', card), box = $('.jn-asa', card); if (!q) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { q.textContent = term; box.classList.add('show'); return; }
     var i = 0;
-    (function f(){
-      if (my !== tok) return;
+    function f(){
       if (i <= term.length) { q.textContent = term.slice(0, i++); setTimeout(f, 95); return; }
-      setTimeout(function(){ if (my !== tok) return; box.classList.add('show');
-        setTimeout(function(){ if (my !== tok) return; box.classList.remove('show'); i = 0; q.textContent = ''; setTimeout(f, 600); }, 4200); }, 350);
-    })();
+      setTimeout(function(){ box.classList.add('show');
+        setTimeout(function(){ box.classList.remove('show'); i = 0; q.textContent = ''; setTimeout(f, 600); }, 4200); }, 350);
+    }
+    setTimeout(f, delay || 0);
   }
-  drawAd(0);
+  drawAds();
   if (/[?&]view=proto\b/.test(Q) || /[?&]step=\w/.test(Q)) show('proto');
 })();
 /* JUNO:END */
@@ -2626,7 +3029,7 @@ function tourInit(){
   /* live walkthrough inside the three ad phones */
   var stage = document.getElementById('duoStage'), data = document.getElementById('duoData'); if (!stage || !data) return;
   var D = JSON.parse(data.textContent), F = D.flows, W = M.walk || {}, walk = {on: false, tok: 0};
-  var LABEL = W.button || '▶ Play the walkthrough in the phones';
+  var LABEL = W.button || '▶ 30-second walkthrough';
   var bar = document.createElement('div'); bar.className = 'au-walk';
   bar.innerHTML = '<button type="button" id="walkBtn">' + LABEL + '</button><div class="au-walkbar" id="walkBar"><span id="walkTx"></span><i><b id="walkPr"></b></i></div>';
   var head = $('#duo .au-duo-h'); head.parentNode.insertBefore(bar, head.nextSibling);
@@ -2672,7 +3075,7 @@ function tourInit(){
       for (var k = 0; k < n; k++) {
         var s = steps[k], btn = $('#duoSteps button[data-id="' + s.id + '"]'); if (btn) btn.click();
         cap((W.captions || {})[s.id] || ('<b>' + (btn ? btn.textContent : s.id) + '.</b> ' + (rows[s.id] ? 'Each ad gets its own version of this screen.' : (plain((D.stepCaps || {})[s.id]) || 'Same screen for every ad.'))), Math.round((k + 1) / (n + 1) * 100));
-        await wait(k ? 1500 : 2200, tk);
+        await wait(k ? (W.dwell || 3000) : (W.first || 3600), tk);
         if (k === n - 1) break;
         /* each phone taps through its own screen: an answer first if nothing is picked, then its button */
         for (var pass = 0; pass < 2; pass++) {
@@ -2683,7 +3086,7 @@ function tourInit(){
         }
         $$('.au-finger').forEach(function(f){ f.classList.toggle('on', false); });
       }
-      cap(W.end || 'That’s the three versions. Tap any phone, or a recommendation under it.', 100); await wait(2600, tk);
+      cap(W.end || 'That’s the three versions. Tap any phone, or a recommendation under it.', 100); await wait(W.endMs || 3200, tk);
     } catch (e) {}
     stop();
   }
@@ -2694,7 +3097,7 @@ function tourInit(){
 })();
 /* MOTION:END */
 </script>
-<script type="application/json" id="motionData">{"hero": {"words": ["Log it. Track it. Smash it.", "Stop guessing your workouts", "Gain Strength", "Build Muscle", "Fat Loss", "Commercial Gym", "Progressive Overload", "Hevy Trainer", "5 per week", "Unlimited Routines", "Bench Press (Barbell)", "Workout Days Log"], "icon": "assets/brand/appstore-icon.jpg", "stats": [["★ 4.9", "from 104K ratings on the US App Store"], ["32", "Hevy ads in the Meta Ad Library, Nov 2025 to Mar 2026; none live on 16 Nov"], ["12", "questions every install answers before the paywall"], ["0", "of those answers named on the paywall today"]]}, "walk": {"captions": {"ad": "Three of your Meta videos: seeing progress, With Hevy / Without Hevy, the gym’s Strava.", "welcome": "Each version opens on the carousel slide its video promised, with no sign-up wall first.", "units": "“Select Units”, kept; the notification and Apple Health prompts wait until after the paywall.", "ask": "Each version asks first what its video left open: the goal, the muscle focus, workouts a week.", "value": "Something of theirs before the price: their program, set 1 logged, their workout card.", "paywall": "Three paywalls in your components: result-led, Free vs Pro, proof-led.", "offer": "Not now offers a plan you already sell: Monthly at $2.99, or Lifetime at $74.99."}, "taps": {"ad": ".hv-fbb", "welcome-a": ".hv-go", "welcome-b": ".hv-go", "welcome-c": ".hv-go", "units": ".hv-cta", "ask-a": ".hv-cta", "ask-b": ".hv-cta", "ask-c": ".hv-cta", "value-a": ".hv-cta", "value-b": [".hv-chk", ".hv-cta"], "value-c": ".hv-cta", "paywall-a": ".hv-not", "paywall-b": ".hv-not", "paywall-c": ".hv-not"}, "end": "Five ideas, three versions, one app that opens on the video they tapped."}, "heroWalk": "▶ Watch it play in the phones"}</script>
-<script type="application/json" id="junoData">{"month": "November 2026", "icon": "assets/brand/appstore-icon.jpg", "demo": "https://adapty.io/schedule-demo/", "accent": "#0a0a0a", "hi": "#008bfc", "logo": {"src": "assets/brand/logo.svg", "mask": true, "ar": 4.08, "h": 22}, "hero": {"h1": ["They tell you how they train.", "The paywall sells everyone the Trainer."], "lead": "Your Meta videos promised progress, a log that remembers the weight, and “the gym’s Strava”. Every install then answers 12 questions, including “build your own workouts or be guided?”, and meets “Get Full Access to Hevy”, led by Hevy Trainer. Here is Hevy answering each video, in your design, at your prices.", "byline": "Built from your iOS onboarding as recorded on 16 November 2026, your US App Store listing and in-app purchases, and the 32 Hevy ads in the Meta Ad Library.", "open": "Open the three versions", "tiles": ["#008bfc", "#e5c701", "#68b941", "#1a1a1c", "#939393", "#1d83ea", "#353536"], "words": ["Log it", "Track it", "Smash it", "Gain Strength", "Build Muscle", "Fat Loss", "Hevy Trainer", "Progressive Overload", "Unlimited Routines", "Rest Timer", "Personalised Program", "5 per week"]}, "stats": [["★ 4.9", "from 104K ratings on the US App Store"], ["32", "Hevy ads in the Meta Ad Library, Nov 2025 to Mar 2026; none live on 16 Nov"], ["12", "questions every install answers before the paywall"], ["0", "of those answers named on the paywall today"]], "what": {"h2": ["We went through Hevy as a new lifter,", "then rebuilt the first screens around each video."], "p": "Adapty powers subscriptions for 30,000+ apps, so we see what moves purchases across the market. Nearly 500 apps build their paywalls and onboarding in Adapty Flow Builder, and millions of dollars in subscription revenue pass through it every month. For Hevy we looked at the gap between what someone tells you in onboarding and what the paywall says back.", "launchTitle": "A first launch today", "launch": [["Taps one of your Meta videos: “Install now”.", "Kept."], ["Opens on “Log your workouts easily, all in one place.” and Sign up with Apple, Google or Email, then a username.", "Here the carousel opens on the video’s own slide; the account waits until after the paywall."], ["Picks units while “Hevy Would Like to Send You Notifications” pops up, then gets the Apple Health request.", "Kept; both prompts move past the paywall."], ["Answers 12 questions, including “Would you like to build your own workouts or be guided?”, and sees “Your Personalized Program”.", "Kept; each version asks first what its video left open."], ["Meets “Get Full Access to Hevy”, led by Hevy Trainer; “Not now” opens “Are you sure?”.", "Here the paywall answers their answers, and Not now offers a second plan you already sell."]], "notes": [["Your design, not ours", "Your #000000 screens, #1a1a1c cards, the #008bfc buttons and segmented bars, the yellow PRO badge, your three plan cards with the blue “Save 33%” tab, your carousel art, your logger and your program cards. Only the order and a few screens change."], ["Your prices, as published", "$2.99 a month, $23.99 a year and $74.99 lifetime, from your US App Store in-app purchases. Your recording was on the Vietnamese storefront (69.000đ, 559.000đ, 1.899.000đ), so we show the US prices. $2.00 a month is $23.99 ÷ 12; 33% is your own badge ($23.99 against 12 × $2.99). No timer, no invented discount."], ["You may have tested some of this", "We can’t see your experiment history. Tell us what you’ve already run and we’ll go deeper on the rest."]]}, "ads": {"kick": "Your ads on Meta", "h2": ["32 ads, three promises in the videos.", "Every install lands on the same paywall."], "p": "The Meta Ad Library shows 32 ads from your page “Hevy”, in 60 versions, from 3 Nov 2025 to 23 Mar 2026, linking to the App Store or Google Play; none is running on 16 November. The text mostly says “track it”; the videos carry the promise. Each of the three English videos gets its own version of the app in the prototype.", "tabs": [{"tab": "“Start seeing progress”", "kind": "video", "chan": "Meta · video ad · Nov 2025", "src": "assets/ads/ad-a.mp4", "poster": "assets/ads/ad-a-poster.jpg", "frames": ["assets/ads/ad-a-1.jpg", "assets/ads/ad-a-2.jpg", "assets/ads/ad-a-3.jpg", "assets/ads/ad-a-4.jpg"], "hook": "“When you find the perfect gym app and start seeing progress”", "meta": "Meta · video ad · 12 s · ran 3 – 20 Nov 2025 under “Stop guessing your workouts. Start tracking with Hevy 💪” · links to the App Store · Meta Ad Library", "inad": "A lifter on the hip thrust and the Smith machine squat, with the line over every shot.", "promise": "An app that finally shows my progress.", "today": "“Log your workouts easily, all in one place.”, a sign-up wall, 12 questions, then “Get Full Access to Hevy”.", "rebuild": "Version A opens on your own “Turn your training into visible progress.” slide, asks only “What is your top goal?”, shows your program on that goal, and its paywall reads “Start your Gain Strength program”.", "flow": "a"}, {"tab": "“With Hevy / Without Hevy”", "kind": "video", "chan": "Meta · video ad · Feb–Mar 2026", "src": "assets/ads/ad-b.mp4", "poster": "assets/ads/ad-b-poster.jpg", "frames": ["assets/ads/ad-b-1.jpg", "assets/ads/ad-b-2.jpg", "assets/ads/ad-b-3.jpg", "assets/ads/ad-b-4.jpg"], "hook": "“Log it. Track it. Smash it. ✅”", "meta": "Meta · video ad · 23 s · ran 5 – 12 Mar 2026 · this version links to Google Play; the same text ran with App Store links (6 ads, 10 versions) · Meta Ad Library", "inad": "Split screen: with Hevy he sits down and lifts; without, he gets up, checks the machine and guesses the weight.", "promise": "Never guess a weight again.", "today": "The same sign-up wall, the same 12 questions and the same paywall as every other ad.", "rebuild": "Version B opens on “Log it. Track it. Smash it.” over your logger slide, asks the muscle focus, logs set 1 of that lift before the price, and opens the paywall on your own Free vs Pro table.", "flow": "b"}, {"tab": "“The gym’s Strava”", "kind": "video", "chan": "Meta · video ad · Nov 2025", "src": "assets/ads/ad-c.mp4", "poster": "assets/ads/ad-c-poster.jpg", "frames": ["assets/ads/ad-c-1.jpg", "assets/ads/ad-c-2.jpg", "assets/ads/ad-c-3.jpg", "assets/ads/ad-c-4.jpg"], "hook": "“POV: you just found out that the gym’s Strava exists”", "meta": "Meta · video ad · 9 s · ran 3 – 17 Nov 2025 under “Stop guessing your workouts. Start tracking with Hevy 💪” · links to the App Store · Meta Ad Library", "inad": "Pull-ups, then your workout card on screen: 1h 5min, 8,440 kg, 2 records, HEVY.", "promise": "Share my workouts and see my friends’.", "today": "The community slide comes third, behind the sign-up wall, then the same questions and paywall.", "rebuild": "Version C opens on your “Connect with athletes who share your goals.” slide, asks workouts a week, shows their first workout card and Workout Days Log, and puts your 4.9 stars and a review at the plans.", "flow": "c"}], "more": "Also in the library: “Quand tu peux enfin tracker tes entrainements à la salle 💪” (French, 12 ads, 31 versions, 18 Feb – 23 Mar 2026; its videos show your Workout Days Log, so it would open Version C) and “loggen. tracken. durchziehen. ✅” (German, 8 ads, the same videos as “Log it. Track it. Smash it.”, Version B). Counts are ads, not spend. No Apple Ads searches were found for Hevy in the US in the last 30 days."}, "outcome": {"h2": ["Five ideas,", "one app that answers the video they tapped."], "k": "Run together", "t": "Three videos, three first screens, one paywall that names what they told you", "nums": [["+20%", "CR to purchase"], ["+15%", "ARPU"]]}, "proto": {"kick": "Prototype · one version per video", "h1": ["Three Meta videos.", "Three first launches."], "sub": "One install from each promise: seeing progress, a log that remembers, the gym’s Strava. Same app, same prices. Tap the steps, or tap inside any phone."}, "kept": ["Kept: your three plan cards, “Subscribe to Yearly plan” and “Not now”, word for word.", "Kept: your carousel art and lines, and “Already have account? Log in”.", "Kept: “Select Units” and all three switches; the two prompts move, they don’t go.", "Kept: “Tens of thousands of 5 star reviews”, natzgrierson’s review and “Apps We Love”, from your own paywall.", "Kept: $2.99 a month and $74.99 lifetime, plans you already sell."], "_tiles": ["#4997d6", "#cbba47", "#84b26c", "#585757", "#9d9c9b", "#5993cc", "#676666"]}</script>
+<script type="application/json" id="motionData">{"hero": {"words": ["Log it. Track it. Smash it.", "Stop guessing your workouts", "Gain Strength", "Build Muscle", "Fat Loss", "Commercial Gym", "Progressive Overload", "Hevy Trainer", "5 per week", "Unlimited Routines", "Bench Press (Barbell)", "Workout Days Log"], "icon": "assets/brand/appstore-icon.jpg", "stats": [["★ 4.9", "from 104K ratings on the US App Store"], ["32", "Hevy ads in the Meta Ad Library, Nov 2025 to Mar 2026; all paused since 23 Mar"], ["3", "promises with a first launch of their own: seeing progress, “Log it. Track it. Smash it.”, the gym’s Strava"], ["1", "first launch every install meets today, whatever the video"]]}, "walk": {"captions": {"ad": "Three installs: “start seeing progress”, “Log it. Track it. Smash it.”, “the gym’s Strava”.", "welcome": "Each first screen is the slide its video promised. No sign-up yet.", "units": "“Select Units”, kept. The two prompts wait until after the paywall.", "ask": "One question, a different one per video.", "value": "A first win before any price: their program, set 1 logged, their workout card.", "paywall": "Each paywall names what they told you.", "offer": "Not now offers a plan you already sell: Monthly at $2.99, or Lifetime at $74.99."}, "taps": {"ad": ".hv-fbb", "welcome-a": ".hv-go", "welcome-b": ".hv-go", "welcome-c": ".hv-go", "units": ".hv-cta", "ask-a": ".hv-cta", "ask-b": ".hv-cta", "ask-c": ".hv-cta", "value-a": ".hv-cta", "value-b": [".hv-chk", ".hv-cta"], "value-c": ".hv-cta", "paywall-a": ".hv-not", "paywall-b": ".hv-not", "paywall-c": ".hv-not"}, "end": "Three first launches, your design, your prices.", "button": "▶ 30-second walkthrough", "first": 3600, "dwell": 3000, "endMs": 3200, "skip": ["today"]}, "heroWalk": "▶ Watch it play in the phones"}</script>
+<script type="application/json" id="junoData">{"month": "November 2026", "icon": "assets/brand/appstore-icon.jpg", "demo": "https://adapty.io/schedule-demo/", "accent": "#0a0a0a", "hi": "#008bfc", "logo": {"src": "assets/brand/logo.svg", "mask": true, "ar": 4.08, "h": 22}, "hero": {"h1": ["Three videos, three promises.", "One paywall answers all of them."], "lead": "Your Meta videos promised visible progress, a log that remembers the weight and “the gym’s Strava”. Every install met the same sign-up, 12 questions and “Get Full Access to Hevy”. Your ads have been paused since 23 March 2026. Here is one first launch per promise, ready when they restart.", "byline": "Built from your iOS onboarding as we recorded it on 16 November 2026, your US App Store listing and in-app purchases, and the 32 Hevy ads in the Meta Ad Library.", "open": "Open the three flows", "tiles": ["#008bfc", "#e5c701", "#68b941", "#1a1a1c", "#939393", "#1d83ea", "#353536"], "words": ["Log it", "Track it", "Smash it", "Gain Strength", "Build Muscle", "Fat Loss", "Hevy Trainer", "Progressive Overload", "Unlimited Routines", "Rest Timer", "Personalised Program", "5 per week"]}, "stats": [["★ 4.9", "from 104K ratings on the US App Store"], ["32", "Hevy ads in the Meta Ad Library, Nov 2025 to Mar 2026; all paused since 23 Mar"], ["3", "promises with a first launch of their own: seeing progress, “Log it. Track it. Smash it.”, the gym’s Strava"], ["1", "first launch every install meets today, whatever the video"]], "what": {"h2": ["We watched your videos the way a new lifter does,", "then rebuilt what happens after the tap."], "p": "Adapty powers subscriptions for 30,000+ apps, so we see what moves purchases across the market. Nearly 500 apps build their paywalls and onboarding in Adapty Flow Builder, and millions of dollars in subscription revenue pass through it every month. For Hevy we looked at the gap between what each video promises and what the first launch says.", "launchTitle": "Your first launch today", "launch": [["“Log your workouts easily, all in one place.”, then Sign up with Apple, Google or Email and a username.", "Kept; the account moves behind the plan."], ["“Select Units”, with “Hevy Would Like to Send You Notifications” on top, then the Apple Health request.", "Units kept; both prompts move past the paywall."], ["12 questions, including “Would you like to build your own workouts or be guided?”, then “Your Personalized Program”.", "Kept; each flow asks first what its video left open."], ["“Get Full Access to Hevy”: Hevy Trainer first, then Monthly, Yearly and Lifetime.", "Kept, now naming their goal."], ["“Not now” opens “Are you sure?”.", "Here it offers a plan you already sell."]], "notes": [["Your design, not ours", "Your #000000 screens and #1a1a1c cards, the #008bfc buttons and segmented bars, the yellow PRO badge, your three plan cards with the blue “Save 33%” tab, your carousel art, your logger and your program cards. Only the order of the screens and the words at their top change."], ["Your prices, as published", "$2.99 a month, $23.99 a year and $74.99 lifetime, from your US App Store in-app purchases. $23.99 ÷ 12 = $2.00 a month; 12 × $2.99 = $35.88, so your own “Save 33%” holds. In Spain and France: 3,49 €, 26,49 € and 89,99 €. Your recording was on the Vietnamese storefront; every price here is a storefront’s own, not a conversion. No trial, no timer, no invented discount."], ["You may have tested some of this", "We cannot see your experiment history. Tell us what you already ran and we will go deeper on the rest."]]}, "ads": {"kick": "Your ads on Meta", "h2": ["One channel, paused since March.", "Three different promises."], "p": "The Meta Ad Library shows 32 ads from your “Hevy” page, in 60 versions, from 3 November 2025 to 23 March 2026, linking to the App Store or Google Play. None has run since 23 March. The text mostly says “track it”; the videos carry the promise. Each of the three English videos gets a first launch of its own.", "tabs": [{"tab": "“Start seeing progress”", "kind": "video", "chan": "Meta · video · Nov 2025", "src": "assets/ads/ad-a.mp4", "poster": "assets/ads/ad-a-poster.jpg", "frames": ["assets/ads/ad-a-1.jpg", "assets/ads/ad-a-2.jpg", "assets/ads/ad-a-3.jpg", "assets/ads/ad-a-4.jpg"], "hook": "“When you find the perfect gym app and start seeing progress”", "meta": "Meta · video · ran 3–20 Nov 2025 · App Store · paused", "inad": "A lifter on the hip thrust and the Smith machine squat, with the line over every shot.", "promise": "An app that finally shows my progress.", "today": "“Log your workouts easily, all in one place.”, a sign-up, 12 questions, then “Get Full Access to Hevy”.", "rebuild": "Your “Turn your training into visible progress.” slide first; one question, their top goal; their program built on that goal before any price; the paywall reads “Start your Gain Strength program”.", "flow": "a", "sub": "12-second video under “Stop guessing your workouts.”"}, {"tab": "“Log it. Track it. Smash it.”", "kind": "video", "chan": "Meta · video · Mar 2026", "src": "assets/ads/ad-b.mp4", "poster": "assets/ads/ad-b-poster.jpg", "frames": ["assets/ads/ad-b-1.jpg", "assets/ads/ad-b-2.jpg", "assets/ads/ad-b-3.jpg", "assets/ads/ad-b-4.jpg"], "hook": "“Log it. Track it. Smash it. ✅”", "meta": "Meta · video · ran 5–12 Mar 2026 · Google Play here, App Store in 6 more ads · paused", "inad": "Split screen: with Hevy he sits down and lifts; without, he gets up, checks the machine and guesses the weight.", "promise": "Never guess a weight again.", "today": "The same sign-up, the same 12 questions and the same paywall as every other video.", "rebuild": "“Log it. Track it. Smash it.” over your logger slide first; one question, the muscle they focus on; set 1 of that lift logged before any price; the paywall opens on your own Free vs Pro table.", "flow": "b", "sub": "23-second video: With Hevy / Without Hevy"}, {"tab": "“The gym’s Strava”", "kind": "video", "chan": "Meta · video · Nov 2025", "src": "assets/ads/ad-c.mp4", "poster": "assets/ads/ad-c-poster.jpg", "frames": ["assets/ads/ad-c-1.jpg", "assets/ads/ad-c-2.jpg", "assets/ads/ad-c-3.jpg", "assets/ads/ad-c-4.jpg"], "hook": "“POV: you just found out that the gym’s Strava exists”", "meta": "Meta · video · ran 3–17 Nov 2025 · App Store · paused", "inad": "Pull-ups, then your workout card on screen: 1h 5min, 8,440 kg, 2 records, HEVY.", "promise": "Share my workouts and see my friends’.", "today": "Your community slide comes third, behind the sign-up, then the same questions and paywall.", "rebuild": "Your “Connect with athletes who share your goals.” slide first; one question, workouts a week; their first workout card and Workout Days Log before any price; the paywall leads with your 4.9 stars and a review.", "flow": "c", "sub": "9-second video under “Stop guessing your workouts.”"}], "more": "Also in the library, with no phone of their own: “Quand tu peux enfin tracker tes entrainements à la salle 💪” (French, 12 ads, 31 versions, 18 Feb – 23 Mar 2026; its videos show your Workout Days Log, so it would open the “gym’s Strava” flow) and “loggen. tracken. durchziehen. ✅” (German, 8 ads, the same videos as “Log it. Track it. Smash it.”, so that flow). Counts are ads, not spend. No Apple Ads searches were found for Hevy in the US in the last 30 days.", "foot": "Adapty picks the flow at first open from the campaign the install came from, through the attribution you already run. Until the ads restart, the same split works on an answer every install already gives: build my own, or be guided."}, "outcome": {"h2": ["Five ideas,", "one first launch per video."], "k": "Run together", "t": "Every video’s promise kept on the screen it pays on", "nums": [["+10–20%", "purchases"], ["+10–15%", "ARPU"]], "cap": "Adapty’s range for a structural change to the flow. They overlap, so they don’t add up: each flow is its own A/B test against today’s first launch, judged on what the installs from that video earn.", "img": "assets/hero/paywall-a.png", "do": [["Do this week", "Move the sign-up behind the plan", "One change in the order of your screens, built in Flow Builder, live without an app release. Today Sign up with Apple, Google or Email and a username come before Hevy has shown anything."], ["Then", "One paywall, the video as the variable", "Three videos, one template: the first slide, the question and the paywall headline change with the Meta campaign. Until the ads restart, “build my own or be guided” is the variable."], ["And measure", "Judge each video on what it earns, not installs", "Adapty reports trials, purchases and revenue per campaign, so when the ads restart, spend follows the video that pays."]]}, "proto": {"kick": "Prototype · one first launch per video", "h1": ["Three Meta videos.", "Three first launches."], "sub": "One install from your “start seeing progress” video, one from “Log it. Track it. Smash it.”, one from “the gym’s Strava”. Same screens, same prices. Tap the steps, or tap inside any phone: install, answer, log a set, choose a plan, tap Not now."}, "kept": ["Kept: your three plan cards, Hevy Trainer, “Subscribe to Yearly plan” and “Not now”, word for word.", "Kept: your carousel art and lines, and “Already have account? Log in”.", "Kept: “Select Units” and all three switches; the two prompts move, they don’t go.", "Kept: “Tens of thousands of 5 star reviews”, natzgrierson’s review and “Apps We Love”, from your own paywall.", "Kept: $2.99 a month and $74.99 lifetime, plans you already sell."], "tint": "#008bfc", "langNote": {"es": "Phones in Spanish, translated by us; prices (3,49 €, 26,49 €, 89,99 €) and the 4.9 from 20.5K ratings from your Spanish App Store. The ads and natzgrierson’s review stay word for word.", "fr": "Phones in French, translated by us; prices (3,49 €, 26,49 €, 89,99 €) and the 4.9 from 12K ratings from your French App Store. The ads and natzgrierson’s review stay word for word."}, "_tiles": ["#4997d6", "#cbba47", "#84b26c", "#585757", "#9d9c9b", "#5993cc", "#676666"]}</script>
 </body>
 </html>

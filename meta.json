@@ -1,19 +1,97 @@
 {
  "flows": [
-  {"channel": "Meta", "headline": "Turn your training into visible progress.", "paywall_opens_on": "Start your Gain Strength program", "note": "asks only “What is your top goal?” and shows their program before the paywall"},
-  {"channel": "Meta", "headline": "Log it. Track it. Smash it.", "paywall_opens_on": "Need to compare? (Free vs Pro)", "note": "set 1 of their lift logged before the price"},
-  {"channel": "Meta", "headline": "Connect with athletes who share your goals.", "paywall_opens_on": "4.9 ★ · Tens of thousands of 5 star reviews", "note": "their first workout card and Workout Days Log before the price"}
+  {
+   "channel": "Meta",
+   "headline": "Turn your training into visible progress.",
+   "paywall_opens_on": "Start your Gain Strength program",
+   "note": "asks only “What is your top goal?” and shows their program before the paywall",
+   "label": "From your “start seeing progress” ad"
+  },
+  {
+   "channel": "Meta",
+   "headline": "Log it. Track it. Smash it.",
+   "paywall_opens_on": "Need to compare? (Free vs Pro)",
+   "note": "set 1 of their lift logged before the price",
+   "label": "From your “Log it. Track it. Smash it.” ad"
+  },
+  {
+   "channel": "Meta",
+   "headline": "Connect with athletes who share your goals.",
+   "paywall_opens_on": "4.9 ★ · Tens of thousands of 5 star reviews",
+   "note": "their first workout card and Workout Days Log before the price",
+   "label": "From your “gym’s Strava” ad"
+  }
  ],
- "prices": {"yearly": "$23.99", "monthly": "$2.99", "lifetime": "$74.99", "trial": "none", "source": "US App Store listing (in-app purchases); their recorded paywall shows the same plans in VND"},
- "today": {"text": "every install meets the same sign-up wall, 12 questions and one “Get Full Access to Hevy” paywall led by Hevy Trainer", "source": "audit_frames"},
- "asks": ["What is your top goal?", "Would you like to build your own workouts or be guided?", "Which muscle group do you want to focus on?", "How often do you want to work out?"],
- "paywall": {"headline": "Get Full Access to Hevy", "uses_answers": false},
+ "prices": {
+  "yearly": "$23.99",
+  "monthly": "$2.99",
+  "lifetime": "$74.99",
+  "trial": "none",
+  "source": "US App Store listing (in-app purchases); their recorded paywall shows the same plans in VND"
+ },
+ "today": {
+  "text": "every install meets the same sign-up, 12 questions and one “Get Full Access to Hevy” paywall led by Hevy Trainer",
+  "source": "audit_frames"
+ },
+ "asks": [
+  "What is your top goal?",
+  "Would you like to build your own workouts or be guided?",
+  "Which muscle group do you want to focus on?",
+  "How often do you want to work out?"
+ ],
+ "paywall": {
+  "headline": "Get Full Access to Hevy",
+  "uses_answers": false
+ },
  "rebuild": "the video they tapped picks the first slide, the first question and the paywall layout, and the paywall names their answers",
  "ideas": [
-  {"n": 1, "title": "Make the paywall answer the questions they just answered", "screen": "Paywall", "outcome": "CR +10–20%"},
-  {"n": 2, "title": "Ask for the account after the paywall, not before the first question", "screen": "Welcome", "outcome": "CR +5–10%"},
-  {"n": 3, "title": "Hold the two permission prompts until after the paywall", "screen": "Units", "outcome": "CR +10–15%"},
-  {"n": 4, "title": "Bring your 4.9 stars and reviews up to the plans", "screen": "Paywall", "outcome": "CR +5–10%"},
-  {"n": 5, "title": "Offer a second plan when they tap Not now", "screen": "Not now", "outcome": "ARPU +10–15%"}
- ]
+  {
+   "n": 1,
+   "title": "Name their goal on the paywall",
+   "screen": "Paywall",
+   "outcome": "CR +10–20%"
+  },
+  {
+   "n": 2,
+   "title": "Ask for the account after the plan",
+   "screen": "Arrive",
+   "outcome": "CR +5–10%"
+  },
+  {
+   "n": 3,
+   "title": "Hold both permission prompts until after the paywall",
+   "screen": "Units",
+   "outcome": "CR +10–15%"
+  },
+  {
+   "n": 4,
+   "title": "Put your 4.9 stars by the plans",
+   "screen": "Paywall",
+   "outcome": "CR +5–10%"
+  },
+  {
+   "n": 5,
+   "title": "Offer a second plan on Not now",
+   "screen": "Not now",
+   "outcome": "ARPU +10–15%"
+  }
+ ],
+ "outcome": {
+  "purchases": "+10–20%",
+  "arpu": "+10–15%",
+  "note": "Adapty’s range for a structural change to the flow; they overlap, so they don’t add up"
+ },
+ "ads_status": "Meta ads paused; the last one ended on 23 March 2026 (32 ads, 60 versions, 3 Nov 2025 – 23 Mar 2026)",
+ "languages": {
+  "phones": [
+   "en",
+   "es",
+   "fr"
+  ],
+  "why": "Hevy Studios S.L. is in Barcelona (HQ, CEO, Head of Product, a Marketing Manager for Spain in Atlas); French is the biggest group in its ad library (12 ads, 31 of 60 versions)",
+  "prices": {
+   "es": "3,49 € / 26,49 € / 89,99 €",
+   "fr": "3,49 € / 26,49 € / 89,99 €"
+  }
+ }
 }
